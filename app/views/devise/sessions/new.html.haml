@@ -1,0 +1,24 @@
+.row
+  .col-md-6.col-md-offset-3
+    #login-wrapper
+      %header
+        .brand
+          %a.logo{href: "/"}
+            %i.fa.fa-lg.fa-space-shuttle
+            %span ROCKET
+            BOARD
+      .panel.panel-primary
+        .panel-heading
+        .panel-body
+          %form.form-horizontal{role: "form"}
+            .form-group
+              .col-md-12
+                %input#email.form-control{placeholder: "Email", type: "email"}
+                %i.fa.fa-user
+            .form-group
+              .col-md-12
+                %input#password.form-control{placeholder: "Password", type: "password"}
+                %i.fa.fa-lock
+            %a.btn.btn-primary.btn-block{href: "/"} Sign In
+            %hr/
+            %a.btn.btn-default.btn-block{href: "signup"} Sign Up

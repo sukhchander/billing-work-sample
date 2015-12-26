@@ -1,0 +1,26 @@
+.brand
+  %a.logo{href: "/"}
+    %i.fa.fa-lg.fa-space-shuttle
+    = succeed "BOARD" do
+      %span ROCKET
+
+%ul.nav.navbar-nav.navbar-left
+  %li.toggle-navigation.toggle-left
+    %button#toggle-left.sidebar-toggle
+      %i.fa.fa-bars
+
+%ul.nav.navbar-nav.navbar-right
+  %li.dropdown.profile.hidden-xs
+    %a.dropdown-toggle{"data-toggle" => "dropdown", href: "javascript:void(0);"}
+      %span.meta
+        %span.avatar
+          %img.img-circle{alt: "", src: image_path('profile.jpg')}
+        %span.text user.email
+        %span.caret
+    %ul.dropdown-menu.animated.fadeInRight{role: "menu"}
+      %span.arrow.top
+      %li
+        %a{href: "javascript:void(0);"}
+          %span.icon>
+            %i.fa.fa-sign-out
+          Logout

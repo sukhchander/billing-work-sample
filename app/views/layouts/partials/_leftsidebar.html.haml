@@ -1,0 +1,22 @@
+%h5.sidebar-header
+
+%nav
+  %ul.nav.nav-pills.nav-stacked
+    %li{class: "#{:active if controller?('dashboard') && action?('index')}"}
+      %a{href: "/dashboard"}
+        %i.fa.fa-fw.fa-tachometer
+        Dashboard
+    %li{class: "nav-dropdown open #{'active open' if controller?('charts')}"}
+      %a{href: "#"}
+        %i.fa.fa-fw.fa-bar-chart-o
+        Analytics
+      %ul.nav-sub
+        %li{class: "#{:active if controller?('charts') && action?('chartjs')}"}
+          %a{href: "/charts/chartjs"}
+            Orders
+        %li{class: "#{:active if controller?('charts') && action?('c3')}"}
+          %a{href: "/charts/c3"}
+            Products
+        %li{class: "#{:active if controller?('charts') && action?('sparkline')}"}
+          %a{href: "/charts/sparkline"}
+            Sparkline Charts
