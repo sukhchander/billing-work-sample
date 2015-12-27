@@ -1,0 +1,91 @@
+.pageheader
+  .breadcrumb-wrapper.hidden-xs
+    %ol.breadcrumb
+      %li.active Dashboard
+
+%section#main-content
+
+  .row
+    .col-md-12.col-lg-12
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title Revenue
+          .reportdate.actions
+            %i.fa.fa-calendar-o
+            %span Jan 1 - June 30
+            %b.caret
+        .panel-body.server-chart
+          .row
+            .col-md-12.col-lg-12
+              .row
+                .col-md-12.col-lg-6
+                  .line-chart
+                    %canvas#canvas1{height: "200"}
+                .col-md-12.col-lg-6
+                  .bar-chart
+                    %canvas#canvas2{height: "200"}
+
+  .row
+    .col-md-12.col-lg-8
+      .row
+        .col-md-6
+          .panel.panel-solid-success.widget-mini
+            .panel-body
+              %i.icon-bar-chart
+              %span.total.text-center $3,200
+              %span.title.text-center Billed Revenue
+        .col-md-6
+          .panel.widget-mini
+            .panel-body
+              %i.icon-calendar
+              %span.total.text-center 866,130
+              %span.title.text-center Billed Hours
+        .col-md-6
+          .panel.widget-mini
+            .panel-body
+              %i.icon-layers
+              %span.total.text-center 9
+              %span.title.text-center Billed Containers
+        .col-md-6
+          .panel.panel-solid-info.widget-mini
+            .panel-body
+              %i.icon-user
+              %span.total.text-center 856
+              %span.title.text-center Billed Customers
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-4
+      .panel.panel-default.browser-chart
+        .panel-heading
+          %h3.panel-title CONTAINERS
+        .panel-body
+          .row
+            .col-xs-6.col-sm-6.col-md-6.col-lg-6
+              %ul
+                %li
+                  %i.fa.fa-circle.success-color
+                  mongodb
+                %li
+                  %i.fa.fa-circle.primary-color
+                  haproxy
+                %li
+                  %i.fa.fa-circle.warning-color
+                  postgresql
+                %li
+                  %i.fa.fa-circle.info-color
+                  influxdb
+                %li
+                  %i.fa.fa-circle.default-color
+                  redis
+            .col-xs-6.col-sm-6.col-md-6.col-lg-6
+              #doughnut-canvas-holder
+                %canvas#doughnut-chart-area{height: "137", width: "137"}
+
+
+- content_for :javascript do
+
+  :javascript
+
+    $(document).ready(function() {
+        app.dateRangePicker();
+        app.chartJs();
+    });
