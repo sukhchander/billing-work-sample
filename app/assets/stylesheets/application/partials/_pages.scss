@@ -18,12 +18,15 @@
         padding: 20px 0;
     }
 }
+
 #login-wrapper .form-group i {
     position: absolute;
     left: 27px;
     top: 11px;
 }
-#login-wrapper #email, #login-wrapper #password {
+
+#login-wrapper #email,
+#login-wrapper #password {
     padding-left: 32px;
 }
 
@@ -33,30 +36,34 @@
         border: 7px solid #e5e6ea;
     }
 }
+
 .profile-info .connect {
     margin: 15px 0 5px 0;
     button {
         margin-right: 15px;
     }
 }
+
 .timeline-post-to {
     textarea {
         min-height: 80px;
         margin-bottom: 15px;
     }
 }
+
 .timeline-post-to:before {
-width: 10px;
-height: 10px;
-border-style: solid;
-content: " ";
-position: absolute;
-left: 5px;
-top: 19px;
-border-width: 8px 8px 8px 0;
-border-color: transparent #fff transparent transparent;
-display: block;
+    width: 10px;
+    height: 10px;
+    border-style: solid;
+    content: " ";
+    position: absolute;
+    left: 5px;
+    top: 19px;
+    border-width: 8px 8px 8px 0;
+    border-color: transparent #fff transparent transparent;
+    display: block;
 }
+
 .timeline-post {
     ul {
         padding: 0;
@@ -115,6 +122,7 @@ display: block;
         }
     }
 }
+
 .embed-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -123,7 +131,10 @@ display: block;
     max-width: 100%;
     height: auto;
 }
-.embed-container iframe, .embed-container object, .embed-container embed {
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
     position: absolute;
     top: 0;
     left: 0;
@@ -131,19 +142,20 @@ display: block;
     height: 100%;
 }
 
- #error-container {
-    text-align:center;
+#error-container {
+    text-align: center;
     margin: 100px auto 0px;
 }
 
 #error-container header h1 {
-    font-size:10em;
+    font-size: 10em;
 }
 
 #error-container header p {
     text-transform: uppercase;
     font-size: 2em;
 }
+
 #error-container p {
-    margin:10px 0 20px 0;
+    margin: 10px 0 20px 0;
 }
