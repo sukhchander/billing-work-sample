@@ -5,9 +5,17 @@ module Api
       class OrdersController < ApiController
 
         def update
+          byebug
         end
 
         def destroy
+          byebug
+        end
+
+      private
+
+        def order_details
+
         end
 
       end
