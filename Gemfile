@@ -32,6 +32,7 @@ gem 'redis-rack-cache'
 
 gem 'mighty_tap'
 gem 'active_attr'
+gem "paranoia", "~> 2.0"
 
 gem 'fog'
 gem 'aws-sdk'

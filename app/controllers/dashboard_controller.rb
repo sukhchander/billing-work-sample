@@ -1,10 +1,10 @@
 class DashboardController < ApplicationController
 
-  #before_action :authenticate_user!
-  #after_action :verify_authorized
+  before_action :authenticate_user!
+  after_action :verify_authorized
 
   def index
-    #authorize User
+    authorize User
   end
 
 private
