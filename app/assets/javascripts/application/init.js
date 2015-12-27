@@ -2,7 +2,6 @@ var app = function() {
 
     $(function() {
         toggleSettings();
-        switchTheme();
         navToggleRight();
         navToggleLeft();
         navToggleSub();
@@ -11,9 +10,6 @@ var app = function() {
         widgetClose();
         widgetFlip();
         tooltips();
-        switcheryToggle();
-        fullscreenWidget();
-        fullscreenMode();
     });
 
     var toggleSettings = function() {
@@ -31,15 +27,6 @@ var app = function() {
             }
         });
     };
-
-    var switchTheme = function() {
-        $('.theme-style-wrapper').click(function() {
-            $('#main-wrapper').attr('class', '');
-            var themeValue = $(this).data('theme');
-            $('#main-wrapper').addClass(themeValue);
-        });
-    };
-
 
     var navToggleRight = function() {
         $('#toggle-right').on('click', function() {
@@ -136,8 +123,6 @@ var app = function() {
         });
     };
 
-
-    //tooltips
     var tooltips = function() {
         $('.tooltip-wrapper').tooltip({
             selector: "[data-toggle=tooltip]",
@@ -145,42 +130,38 @@ var app = function() {
         })
     };
 
-    //Sliders
     var sliders = function() {
         $('.slider-span').slider()
     };
 
-
-    //Chart.js LineChart, BarChart, DoughnutChart
     var chartJs = function() {
-        //Line Charts
+
         var randomScalingFactor = function() {
             return Math.round(Math.random() * 100)
         };
         var lineChartData = {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [{
-                    label: 'Network Usage',
-                    fillColor: 'rgba(26,188,156,0.5)',
-                    strokeColor: 'rgba(26,188,156,1)',
-                    pointColor: 'rgba(220,220,220,1)',
-                    pointStrokeColor: '#fff',
-                    pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-                }, {
-                    label: 'CPU Load',
-                    fillColor: 'rgba(31,123,182,0.5)',
-                    strokeColor: 'rgba(31,123,182,1)',
-                    pointColor: 'rgba(151,187,205,1)',
-                    pointStrokeColor: '#fff',
-                    pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(151,187,205,1)',
-                    data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-                }]
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: 'Network Usage',
+                fillColor: 'rgba(26,188,156,0.5)',
+                strokeColor: 'rgba(26,188,156,1)',
+                pointColor: 'rgba(220,220,220,1)',
+                pointStrokeColor: '#fff',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(220,220,220,1)',
+                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+            }, {
+                label: 'CPU Load',
+                fillColor: 'rgba(31,123,182,0.5)',
+                strokeColor: 'rgba(31,123,182,1)',
+                pointColor: 'rgba(151,187,205,1)',
+                pointStrokeColor: '#fff',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(151,187,205,1)',
+                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+            }]
+        }
 
-            }
-            //Bar Charts
         var randomScalingFactor = function() {
             return Math.round(Math.random() * 100)
         };
@@ -200,10 +181,8 @@ var app = function() {
                 highlightStroke: 'rgba(255,255,255,0.8)',
                 data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
             }]
-
         }
 
-        //DoughnutChart
         var doughnutData = [{
                 value: 300,
                 color: "#1ABC9C",
@@ -230,10 +209,7 @@ var app = function() {
                 highlight: "#1F7BB6",
                 label: "Firefox"
             }
-
         ];
-
-
 
         window.onload = function() {
             var ctx1 = document.getElementById("canvas1").getContext("2d");
@@ -250,52 +226,8 @@ var app = function() {
             window.myDoughnut = new Chart(ctx3).Doughnut(doughnutData, {
                 responsive: true
             });
-
         };
-
     };
-
-
-
-    var nestedSortable = function() {
-        var updateOutput = function(e) {
-            var list = e.length ? e : $(e.target),
-                output = list.data('output');
-            if (window.JSON) {
-                output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
-            } else {
-                output.val('JSON browser support required for this demo.');
-            }
-        };
-
-        // activate Nestable for list 1
-        $('#nestable').nestable({
-                group: 1
-            })
-            .on('change', updateOutput);
-
-        // activate Nestable for list 2
-        $('#nestable2').nestable({
-                group: 1
-            })
-            .on('change', updateOutput);
-
-        // output initial serialised data
-        updateOutput($('#nestable').data('output', $('#nestable-output')));
-        updateOutput($('#nestable2').data('output', $('#nestable2-output')));
-
-        $('#nestable-menu').on('click', function(e) {
-            var target = $(e.target),
-                action = target.data('action');
-            if (action === 'expand-all') {
-                $('.dd').nestable('expandAll');
-            }
-            if (action === 'collapse-all') {
-                $('.dd').nestable('collapseAll');
-            }
-        });
-    };
-
 
     var formValidation = function() {
         $('#form').validate({
@@ -372,55 +304,19 @@ var app = function() {
         } else {
             $(spinOn).prepend(spinInner);
         };
-
     };
-
 
     var spinStop = function() {
         $('.preloader').remove();
     };
 
-    var switcheryToggle = function() {
-        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
-        elems.forEach(function(html) {
-            var switchery = new Switchery(html, {
-                size: 'small',
-                color: '#27B6AF',
-                secondaryColor: '#B3B8C3'
-            });
-        });
-    };
 
-    var fullscreenWidget = function() {
-        $('.panel .fa-expand').click(function() {
-            var panel = $(this).closest('.panel');
-            panel.toggleClass('widget-fullscreen');
-            $(this).toggleClass('fa-expand fa-compress');
-            $('body').toggleClass('fullscreen-widget-active');
-        })
-    };
-
-
-    var fullscreenMode = function() {
-       $('#toggle-fullscreen.expand').on('click',function(){
-        $(document).toggleFullScreen()
-        $('#toggle-fullscreen .fa').toggleClass('fa-expand fa-compress');
-       });
-    };
-
-    //return functions
     return {
         dateRangePicker: dateRangePicker,
-        sliders: sliders,
-        nestedSortable: nestedSortable,
         chartJs: chartJs,
         customCheckbox: customCheckbox,
         formValidation: formValidation,
-        formMask: formMask,
-        formWizard: formWizard,
-        weather: weather,
-        spinStart: spinStart,
-        spinStop: spinStop
+        formWizard: formWizard
     };
 
 }();

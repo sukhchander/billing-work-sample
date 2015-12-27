@@ -5,4 +5,3 @@
 //= require c3Chart/js/c3
 //= require sparkline/jquery.sparkline.min
 //= require gauge/gauge.min
-//= require gauge/gauge-demo
