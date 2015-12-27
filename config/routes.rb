@@ -7,14 +7,21 @@ Rails.application.routes.draw do
     root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
   end
 
-  resources :users
+  namespace :api, defaults: { format: :json } do
+    namespace :v1, version: :v1, module: :v1 do
+      namespace :billing, module: :billing do
+        resources :sku
+        resources :billable
+      end
+    end
+  end
 
   get '/dashboard', to: 'dashboard#index'
 
   # Authentication :: Override default setup = devise_for :users
-  # http://iampedantic.com/post/41170460234/fully-customizing-devise-routes
+  #resources :users
   devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
-
+  # http://iampedantic.com/post/41170460234/fully-customizing-devise-routes
   devise_scope :user do
 
     unauthenticated :user do
