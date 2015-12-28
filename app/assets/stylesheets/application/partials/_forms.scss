@@ -7,7 +7,7 @@
 }
 
 .form-control:focus {
-    background: #fff;
+    background: #ffffff;
     border-color: $primaryColor;
     box-shadow: none;
 }
@@ -18,16 +18,16 @@ select.form-group-sm .form-control {
 }
 
 label.error {
-    color: #fff;
+    color: #ffffff;
     background: $dangerColor;
-    border: solid thin #fff;
+    border: solid thin #ffffff;
     padding: 3px 5px;
 }
 
 label.valid {
-    color: #fff;
+    color: #ffffff;
     background: $successColor;
-    border: solid thin #fff;
+    border: solid thin #ffffff;
     padding: 3px 5px;
 }
 
@@ -139,11 +139,11 @@ label.valid {
 
 .wizard ul li.active {
     color: $primaryColor;
-    background: #fff;
+    background: #ffffff;
 }
 
 .wizard ul li.active .chevron:before {
-    border-left: 14px solid #fff;
+    border-left: 14px solid #ffffff;
 }
 
 .wizard ul li .badge {
@@ -176,12 +176,12 @@ label.valid {
 
 .wizard .actions .btn-prev i {
     margin-right: 5px;
-    color: #fff;
+    color: #ffffff;
 }
 
 .wizard .actions .btn-next i {
     margin-left: 5px;
-    color: #fff;
+    color: #ffffff;
 }
 
 .wizard .actions .btn-prev[disabled] i {

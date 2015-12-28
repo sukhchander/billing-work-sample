@@ -49,7 +49,7 @@
 
 .panel-default>.panel-heading {
     border-color: #eff2f7;
-    background: #fff;
+    background: #ffffff;
     color: #767676
 }
 
@@ -65,12 +65,12 @@
 
 .panel-default>.panel-footer {
     border-color: #eff2f7;
-    background: #fff;
+    background: #ffffff;
     color: #767676
 }
 
 .panel-primary>.panel-heading {
-    color: #fff;
+    color: #ffffff;
     background-color: $primaryColor;
     border-color: $primaryColor;
 }
@@ -96,7 +96,7 @@
 .panel-solid-primary>.panel-footer,
 .panel-solid-primary>.panel-heading {
     background: $primaryColor;
-    color: #fff;
+    color: #ffffff;
     border: none
 }
 
@@ -104,7 +104,7 @@
 .panel-solid-success>.panel-footer,
 .panel-solid-success>.panel-heading {
     background: $successColor;
-    color: #fff;
+    color: #ffffff;
     border: none
 }
 
@@ -112,7 +112,7 @@
 .panel-solid-warning>.panel-footer,
 .panel-solid-warning>.panel-heading {
     background: $warningColor;
-    color: #fff;
+    color: #ffffff;
     border: none
 }
 
@@ -120,7 +120,7 @@
 .panel-solid-info>.panel-footer,
 .panel-solid-info>.panel-heading {
     background: $infoColor;
-    color: #fff;
+    color: #ffffff;
     border: none
 }
 
@@ -128,7 +128,7 @@
 .panel-solid-danger>.panel-footer,
 .panel-solid-danger>.panel-heading {
     background: $dangerColor;
-    color: #fff;
+    color: #ffffff;
     border: none
 }
 
@@ -149,7 +149,7 @@
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$defaultColor', endColorstr='#a4aaad', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
-    color: #fff;
+    color: #ffffff;
     border: none;
     @include roundBorders(3px);
 }
@@ -171,7 +171,7 @@
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1abc9c', endColorstr='#87d5ab', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
-    color: #fff;
+    color: #ffffff;
     border: none;
     @include roundBorders(3px);
 }
@@ -193,7 +193,7 @@
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2dcc70', endColorstr='#27ad5f', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
-    color: #fff;
+    color: #ffffff;
     border: none;
     @include roundBorders(3px);
 }
@@ -215,7 +215,7 @@
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1c40f', endColorstr='#e0af0f', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
-    color: #fff;
+    color: #ffffff;
     border: none;
     @include roundBorders(3px);
 }
@@ -237,20 +237,20 @@
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3598db', endColorstr='#0e7bce', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
-    color: #fff;
+    color: #ffffff;
     border: none;
     @include roundBorders(3px);
 }
 
 .panel-gradient-info>.panel-body a:link,
 .panel-gradient-info>.panel-body a:visited {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
 }
 
 .panel-gradient-info>.panel-body a:hover,
 .panel-gradient-info>.panel-body a:active {
-    color: #fff;
+    color: #ffffff;
     text-decoration: underline;
 }
 
@@ -271,7 +271,7 @@
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e84c3d', endColorstr='#d34639', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
-    color: #fff;
+    color: #ffffff;
     border: none;
     @include roundBorders(3px);
 }

@@ -115,10 +115,23 @@ var Rocketboard = function() {
     };
 
     var dateRangePicker = function() {
-        $('.reportdate').daterangepicker({
+        var today = new Date();
+        var start = new Date();
+        start.setMonth(start.getMonth()-1);
+        var min = new Date();
+        min.setMonth(min.getMonth()-12);
+        $('input[name="daterange"]').daterangepicker({
+            opens: "left",
             format: 'YYYY-MM-DD',
-            startDate: '2014-01-01',
-            endDate: '2014-06-30'
+            startDate: start.toJSON().slice(0,10),
+            endDate: today.toJSON().slice(0,10),
+            minDate: min.toJSON().slice(0,10),
+            maxDate: today.toJSON().slice(0,10)
+        });
+
+        $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+          console.log(picker.startDate.format('YYYY-MM-DD'));
+          console.log(picker.endDate.format('YYYY-MM-DD'));
         });
     };
 
@@ -216,10 +229,10 @@ var Rocketboard = function() {
                 responsive: true
             });
 
-            var ctx2 = document.getElementById("canvas2").getContext("2d");
+            /*var ctx2 = document.getElementById("canvas2").getContext("2d");
             window.myBar = new Chart(ctx2).Bar(barChartData, {
                 responsive: true
-            });
+            });*/
 
             var ctx3 = document.getElementById("doughnut-chart-area").getContext("2d");
             window.myDoughnut = new Chart(ctx3).Doughnut(doughnutData, {

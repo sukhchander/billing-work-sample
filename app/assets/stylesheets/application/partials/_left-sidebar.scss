@@ -120,7 +120,7 @@
             position: absolute;
             margin-top: 20px;
             left: 20px;
-            background-color: #fff;
+            background-color: #ffffff;
             border: 1px solid #e0e7e8;
             border-radius: 3px;
             -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
@@ -137,7 +137,7 @@
             position: absolute;
             pointer-events: none;
             border-color: rgba(255, 255, 255, 0);
-            border-bottom-color: #fff;
+            border-bottom-color: #ffffff;
             border-width: 8px;
             margin-left: -16px;
             top: -16px;
@@ -148,7 +148,7 @@
         }
         &.dropdown > .dropdown-menu li a:hover {
             background-color: $primaryColor;
-            color: #fff;
+            color: #ffffff;
         }
         &.dropdown > .dropdown-menu {
             .profile-progress {
@@ -183,7 +183,7 @@
 
 .sidebar-left a:focus,
 .sidebar-left a:hover {
-    color: #fff;
+    color: #ffffff;
     background-color: transparent
 }
 
@@ -212,7 +212,7 @@
 }
 
 .sidebar-left .nav>li>a:focus {
-    color: #fff;
+    color: #ffffff;
     background-color: transparent
 }
 
@@ -224,7 +224,7 @@
 }
 
 .sidebar-left .nav-sub li.open>a {
-    color: #fff;
+    color: #ffffff;
     background-color: transparent
 }
 

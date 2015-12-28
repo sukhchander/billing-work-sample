@@ -11,47 +11,45 @@
         .panel-heading
           %h3.panel-title Revenue
           .reportdate.actions
+            %span
+              %input{type: :text, name: :daterange, value: "#{1.month.ago.strftime("%Y-%m-%d")}  -  #{Time.now.strftime("%Y-%m-%d")}"}
             %i.fa.fa-calendar-o
-            %span Jan 1 - June 30
             %b.caret
         .panel-body.server-chart
           .row
             .col-md-12.col-lg-12
               .row
-                .col-md-12.col-lg-6
+                .col-md-12.col-lg-12
                   .line-chart
-                    %canvas#canvas1{height: "200"}
-                .col-md-12.col-lg-6
-                  .bar-chart
-                    %canvas#canvas2{height: "200"}
+                    %canvas#canvas1{height: "100"}
 
   .row
     .col-md-12.col-lg-8
       .row
-        .col-md-6
+        .col-md-12
           .panel.panel-solid-success.widget-mini
             .panel-body
               %i.icon-bar-chart
               %span.total.text-center $3,200
-              %span.title.text-center Billed Revenue
-        .col-md-6
-          .panel.widget-mini
-            .panel-body
-              %i.icon-calendar
-              %span.total.text-center 866,130
-              %span.title.text-center Billed Hours
-        .col-md-6
+              %span.title.text-center Total Revenue
+        .col-md-3
           .panel.widget-mini
             .panel-body
               %i.icon-layers
               %span.total.text-center 9
-              %span.title.text-center Billed Containers
+              %span.title.text-center Containers
         .col-md-6
-          .panel.panel-solid-info.widget-mini
+          .panel.widget-mini
+            .panel-body
+              %i.icon-clock
+              %span.total.text-center 866,130
+              %span.title.text-center Container Hours
+        .col-md-3
+          .panel.widget-mini
             .panel-body
               %i.icon-user
               %span.total.text-center 856
-              %span.title.text-center Billed Customers
+              %span.title.text-center Customers
 
     .col-xs-12.col-sm-6.col-md-6.col-lg-4
       .panel.panel-default.browser-chart

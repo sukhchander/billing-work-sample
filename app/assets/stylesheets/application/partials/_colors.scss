@@ -7,7 +7,7 @@
         .nav li.profile > a {
             color: #1d212a;
         }
-        background: #fff;
+        background: #ffffff;
         button.sidebar-toggle:hover,
         button.sidebar-toggle:active,
         button#toggle-profile:hover,
@@ -30,7 +30,7 @@
     .sidebar-left .nav > li.active > a,
     .sidebar-left .nav > li.active > a:focus,
     .sidebar-left .nav > li.active > a:hover {
-        color: #fff;
+        color: #ffffff;
         background-color: $successColor;
     }
     .sidebar-left .nav > li.open > a,
@@ -51,13 +51,13 @@
     .sidebar-left .nav>li.active>a,
     .sidebar-left .nav>li.active>a:focus,
     .sidebar-left .nav>li.active>a:hover {
-        color: #fff;
+        color: #ffffff;
         background-color: $successColor;
     }
     &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a,
     &.sidebar-mini .sidebar-left .nav>li:hover>a {
         color: #1d2939;
-        background-color: #fff;
+        background-color: #ffffff;
     }
 }
 
@@ -67,7 +67,7 @@
         .brand {
             background: $dangerColor;
             .logo {
-                color: #fff;
+                color: #ffffff;
             }
         }
 
@@ -88,7 +88,7 @@
         button#toggle-profile,
         button#toggle-fullscreen,
         .nav li.profile > a {
-            color: #fff;
+            color: #ffffff;
         }
         background: $dangerColor;
         button.sidebar-toggle:hover,
@@ -113,7 +113,7 @@
     .sidebar-left .nav > li.active > a,
     .sidebar-left .nav > li.active > a:focus,
     .sidebar-left .nav > li.active > a:hover {
-        color: #fff;
+        color: #ffffff;
         background-color: $dangerColor;
     }
     .sidebar-left .nav > li.open > a,
@@ -134,12 +134,12 @@
     .sidebar-left .nav>li.active>a,
     .sidebar-left .nav>li.active>a:focus,
     .sidebar-left .nav>li.active>a:hover {
-        color: #fff;
+        color: #ffffff;
         background-color: $dangerColor;
     }
     &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a,
     &.sidebar-mini .sidebar-left .nav>li:hover>a {
         color: #1d2939;
-        background-color: #fff;
+        background-color: #ffffff;
     }
 }
