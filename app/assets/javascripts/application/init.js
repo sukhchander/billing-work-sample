@@ -1,4 +1,4 @@
-var app = function() {
+var Rocketboard = function() {
 
     $(function() {
         toggleSettings();
@@ -88,7 +88,6 @@ var app = function() {
             caretHtml: false,
             accordion: true
         });
-
     };
 
     var profileToggle = function() {
@@ -322,5 +321,5 @@ var app = function() {
 }();
 
 $(window).resize(function() {
-    app.chartJs();
+    Rocketboard.chartJs();
 });
