@@ -13,13 +13,14 @@
     %a.dropdown-toggle{"data-toggle" => "dropdown", href: "javascript:void(0);"}
       %span.meta
         %span.avatar
-          %img.img-circle{alt: "", src: image_path('avatar.jpg')}
-        %span.text user.email
+          = image_tag current_user.try(:gravatar_url), class: 'img-circle'
+        %span.text
+          = current_user.try(:email)
         %span.caret
-    %ul.dropdown-menu.animated.fadeIn{role: "menu"}
+    %ul.dropdown-menu.animated.fadeIn{role: :menu}
       %span.arrow.top
       %li
-        %a{href: "javascript:void(0);"}
+        = link_to destroy_user_session_path, method: :delete do
           %span.icon
             %i.fa.fa-power-off
-          Logout
+            Log out

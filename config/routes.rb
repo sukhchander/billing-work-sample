@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    DashboardManifest::DASHBOARDS.each do |dashboard_resource|
-      resources dashboard_resource
-    end
-    root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
-  end
+  mount Admin::Engine, at: "admin"
 
   namespace :api, defaults: { format: :json } do
     namespace :v1, version: :v1, module: :v1 do
@@ -23,16 +18,17 @@ Rails.application.routes.draw do
 
   # Authentication :: Override default setup = devise_for :users
   #resources :users
-  devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
-  # http://iampedantic.com/post/41170460234/fully-customizing-devise-routes
-  devise_scope :user do
 
-    unauthenticated :user do
-      root to: 'devise/sessions#new', as: 'new_user_session'
-    end
+  devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
+
+  devise_scope :user do
 
     authenticated :user do
       root to: 'dashboard#index'
+    end
+
+    unauthenticated :user do
+      root to: 'devise/sessions#new', as: 'new_user_session'
     end
 
     post '/login', to: 'devise/sessions#create', as: 'user_session'

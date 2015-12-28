@@ -1,10 +1,27 @@
-%h2 Sign up
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-    = f.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, "Sign up"
-= render "devise/shared/links"
+.row
+
+  .col-md-6.col-md-offset-3
+
+    #login-wrapper
+
+      %header
+        .brand
+          %a.logo{href: root_url}
+            %i.fa.fa-lg.fa-space-shuttle
+            %span ROCKETBOARD
+
+      .panel.panel-primary
+        .panel-heading
+        .panel-body
+          %form{role: :form}
+          = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            = f.error_notification
+            .form-group
+              = f.input :email, required: true, autofocus: true
+            .form-group
+              = f.input :password, required: true, hint: ("#{@minimum_password_length} chars minimum" if @minimum_password_length), class: 'form-control'
+            .form-group
+              = f.input :password_confirmation, required: true, html: { class: 'form-control' }
+            = f.button :submit, "Sign up", class: 'btn btn-primary btn-block'
+            %hr
+            %a.btn.btn-default.btn-block{href: new_user_session_path} Sign In

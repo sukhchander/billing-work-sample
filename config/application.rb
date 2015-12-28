@@ -20,10 +20,6 @@ module Rocketboard
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
-    config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
-    config.assets.precompile += %w( base.css dashboard.css forms.css tables.css charts.css )
-    config.assets.precompile += %w( base.js dashboard.js forms.js tables.js charts.js )
-
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -39,4 +35,21 @@ module Rocketboard
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end
+
+  # configatron
+
+  mattr_accessor :logger, :config
+
+  def self.logger
+    @logger ||= Rocketboard::Logger.new
+  end
+
+  def self.set_config(config)
+    @config = config
+  end
+
+  def self.config
+    @config
+  end
+
 end

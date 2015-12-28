@@ -12,9 +12,8 @@
           %h3.panel-title Revenue
           .reportdate.actions
             %span
-              %input{type: :text, name: :daterange, value: "#{1.month.ago.strftime("%Y-%m-%d")}  -  #{Time.now.strftime("%Y-%m-%d")}"}
-            %i.fa.fa-calendar-o
-            %b.caret
+              %input{type: :text, name: :daterange, value: "#{1.month.ago.strftime("%Y-%m-%d")} - #{Time.now.strftime("%Y-%m-%d")}"}
+              %i.fa.fa-calendar-o
         .panel-body.server-chart
           .row
             .col-md-12.col-lg-12
@@ -54,7 +53,7 @@
     .col-xs-12.col-sm-6.col-md-6.col-lg-4
       .panel.panel-default.browser-chart
         .panel-heading
-          %h3.panel-title CONTAINERS
+          %h3.panel-title CONTAINER HOURS
         .panel-body
           .row
             .col-xs-6.col-sm-6.col-md-6.col-lg-6

@@ -21,10 +21,8 @@ gem 'active_model_serializers'
 gem 'kaminari'
 gem 'simple_form'
 
-gem 'devise'
-gem 'devise_invitable'
-gem 'pundit'
-gem 'administrate'
+gem 'devise', '= 3.5.2'
+gem 'admin', path: './admin'
 
 gem 'redis'
 gem 'redis-rails'
@@ -32,7 +30,7 @@ gem 'redis-rack-cache'
 
 gem 'mighty_tap'
 gem 'active_attr'
-gem "paranoia", "~> 2.0"
+gem 'paranoia', '~> 2.0'
 
 gem 'fog'
 gem 'aws-sdk'
@@ -43,6 +41,8 @@ gem 'whenever', require: false
 gem 'honeybadger', '~> 2.0'
 gem 'configatron'
 gem 'awesome_print'
+
+gem 'gravtastic'
 
 group :development do
   gem 'mina'
