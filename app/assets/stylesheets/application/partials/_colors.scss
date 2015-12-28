@@ -63,12 +63,27 @@
 
 .theme-red {
     #header {
+
         .brand {
             background: $dangerColor;
             .logo {
                 color: #fff;
             }
         }
+
+        .logo {
+            color: #1d212a;
+            font-size: 1.25em;
+            font-family: $fontStack;
+            text-transform: uppercase;
+            padding: 15px 0 0 15px;
+            display: inline-block;
+        }
+        .logo span {
+            font-weight: 700;
+            font-family: $fontStack;
+        }
+
         button.sidebar-toggle,
         button#toggle-profile,
         button#toggle-fullscreen,
