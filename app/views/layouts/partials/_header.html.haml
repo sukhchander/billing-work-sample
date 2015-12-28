@@ -1,8 +1,7 @@
 .brand
   %a.logo{href: root_url}
-    %i.fa.fa-lg.fa-space-shuttle
-    %span ROCKET
-    BOARD
+    %i.fa.fa-lg.fa-space-shuttle.hidden-xs
+    %span.hidden-xs ROCKETBOARD
 
 %ul.nav.navbar-nav.navbar-left
   %li.toggle-navigation.toggle-left
@@ -10,11 +9,11 @@
       %i.fa.fa-bars
 
 %ul.nav.navbar-nav.navbar-right
-  %li.dropdown.profile.hidden-xs
+  %li.dropdown.profile
     %a.dropdown-toggle{"data-toggle" => "dropdown", href: "javascript:void(0);"}
       %span.meta
         %span.avatar
-          %img.img-circle{alt: "", src: image_path('profile.jpg')}
+          %img.img-circle{alt: "", src: image_path('avatar.jpg')}
         %span.text user.email
         %span.caret
     %ul.dropdown-menu.animated.fadeIn{role: "menu"}
@@ -22,5 +21,5 @@
       %li
         %a{href: "javascript:void(0);"}
           %span.icon
-            %i.fa.fa-sign-out
+            %i.fa.fa-power-off
           Logout
