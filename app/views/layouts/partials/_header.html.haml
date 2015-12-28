@@ -1,8 +1,8 @@
 .brand
-  %a.logo{href: "/"}
+  %a.logo{href: root_url}
     %i.fa.fa-lg.fa-space-shuttle
-    = succeed "BOARD" do
-      %span ROCKET
+    %span ROCKET
+    BOARD
 
 %ul.nav.navbar-nav.navbar-left
   %li.toggle-navigation.toggle-left
@@ -21,6 +21,6 @@
       %span.arrow.top
       %li
         %a{href: "javascript:void(0);"}
-          %span.icon>
+          %span.icon
             %i.fa.fa-sign-out
           Logout
