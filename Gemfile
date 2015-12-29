@@ -38,7 +38,7 @@ gem 'asset_sync'
 gem 'sidekiq', '~> 4.0'
 gem 'sinatra', require: false
 gem 'whenever', require: false
-gem 'honeybadger', '~> 2.0'
+gem 'rollbar', '~> 2.5.0'
 gem 'configatron'
 gem 'awesome_print'
 
