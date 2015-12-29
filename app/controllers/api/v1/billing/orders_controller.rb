@@ -2,7 +2,7 @@ module Api
   module V1
     module Billing
 
-      class OrdersController < ApiController
+      class OrdersController < Api::V1::ApiController
 
         def update
           byebug

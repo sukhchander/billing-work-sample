@@ -2,7 +2,7 @@ module Api
   module V1
     module Billing
 
-      class ProductsController < ApiController
+      class ProductsController < Api::V1::ApiController
 
         def update
           product = Product.where(sku: product_details.sku).first
@@ -17,8 +17,8 @@ module Api
               unit_price: product_details.unit_price
             })
           end
-
-          @product.to_json
+byebug
+          respond_with @product
         end
 
       private
