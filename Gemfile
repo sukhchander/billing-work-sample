@@ -41,7 +41,6 @@ gem 'whenever', require: false
 gem 'rollbar', '~> 2.5.0'
 gem 'configatron'
 gem 'awesome_print'
-gem 'ffaker'
 
 gem 'gravtastic'
 
@@ -87,6 +86,7 @@ group :development, :test do
   gem 'thin'
   gem 'steps'
   gem 'byebug'
+  gem 'ffaker'
   gem 'progress_bar'
 end
 
