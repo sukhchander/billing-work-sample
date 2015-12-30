@@ -9,9 +9,9 @@ module Api
 
       def update
         if @order.present?
-          @order.starts_at = order_params.starts_at
+          @order.start_at = order_params.start_at
           @order.units = order_params.units
-          @order.state = :updated
+          @order.state = :update if @order.units > 1
           @order.save
         end
 
@@ -20,11 +20,10 @@ module Api
 
       def destroy
         if @order.present?
-          @order.ends_at = order_params.ends_at
-          @order.state = :completed
+          @order.end_at = order_params.end_at
+          @order.state = :end
           @order.save
         end
-
         respond_with @order
       end
 
@@ -34,11 +33,12 @@ module Api
         hash = {
           account_id: nil,
           sku: nil,
+          units: nil,
           identifier: nil,
           group_sku: nil,
           group_identifier: nil,
           start_at: nil,
-          units: nil
+          end_at: nil
         }
         hash.keys.each { |key| hash[key] = params[key] if params.has_key? key }
         OpenStruct.new(hash)
@@ -66,45 +66,3 @@ module Api
 
   end
 end
-
-=begin
-
-1.upto(500) {|i| u=User.new({email: FFaker::Internet.email, password: :foobarbaz}); u.confirm; u.save}
-
-params = {"account_id":125,"sku":"capsule:mongodb","identifier":"capsule:53cde195f1f9772fdf000005","group_sku":"deployment:mongodb","group_identifier":"deployment:3765","start_at":"2015-10-01T22:35:24Z","units":1}
-
-          hash = {
-            account_id: nil,
-            sku: nil,
-            identifier: nil,
-            group_sku: nil,
-            group_identifier: nil,
-            start_at: nil,
-            units: nil
-          }
-          hash.keys.each { |key| hash[key] = params[key] if params.has_key? key }
-          order_params = OpenStruct.new(hash)
-
-          @product = Api::V1::Product.where(sku: order_params.sku).first
-
-          order = Api::V1::Order.where({
-            units: order_params.units,
-            product_id: @product.id,
-            user_id: order_params.account_id,
-            identifier: order_params.identifier,
-            group_sku: order_params.group_sku,
-            group_identifier: order_params.group_identifier
-          }).first_or_create
-
-          order = Api::V1::Order.where({
-            units: order_params.units,
-            product_id: @product.id,
-            user_id: order_params.account_id,
-            identifier: order_params.identifier,
-            group_sku: :foobar,
-            group_identifier: order_params.group_identifier
-          }).first_or_create
-
-
-params = {"account_id":125,"sku":"capsule:mongodb","identifier":"capsule:53cde195f1f9772fdf000005","group_sku":"deployment:mongodb","group_identifier":"deployment:3765","start_at":"2015-10-03T11:34:37Z","units":5}
-=end

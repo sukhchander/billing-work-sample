@@ -3,30 +3,30 @@ module Api
 
     class Order < ActiveRecord::Base
 
-      self.table_name = "orders"
+      self.table_name = :orders
 
       acts_as_paranoid
 
       belongs_to :user
 
-      #has_many :line_items, -> { order(:created_at) }, inverse_of: :order
-
-      #has_many :products
-
       belongs_to :product
+
+      after_initialize :set_state, if: :new_record?
+      after_initialize :set_units, if: :new_record?
 
       before_save :update_total
 
-      after_initialize :set_initial_state, if: :new_record?
-
     private
 
-      def set_initial_state
-        self.state = :initial
+      def set_state
+        self.state = :start
+      end
+
+      def set_units
+        self.units = 1
       end
 
       def update_total
-byebug
         self.total = self.product.unit_price * self.units
       end
 

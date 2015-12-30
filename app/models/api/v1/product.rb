@@ -3,7 +3,7 @@ module Api
 
     class Product < ActiveRecord::Base
 
-      self.table_name = "products"
+      self.table_name = :products
 
       acts_as_paranoid
 
