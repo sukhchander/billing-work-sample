@@ -36,7 +36,7 @@ jQuery(document).ready(function() {
         [10, 6]
     ];
 
-    var plot = jQuery.plot(jQuery("#server-chart"), [{
+    var plot = jQuery.plot(jQuery("#revenue-chart"), [{
         data: uploads,
         label: "&nbsp;Network Usage",
         color: "#1CAF9A"
@@ -82,7 +82,7 @@ jQuery(document).ready(function() {
     });
 
     var previousPoint = null;
-    jQuery("#server-chart").bind("plothover", function(event, pos, item) {
+    jQuery("#revenue-chart").bind("plothover", function(event, pos, item) {
         jQuery("#x").text(pos.x.toFixed(2));
         jQuery("#y").text(pos.y.toFixed(2));
 
@@ -105,13 +105,13 @@ jQuery(document).ready(function() {
 
     });
 
-    jQuery("#server-chart").bind("plotclick", function(event, pos, item) {
+    jQuery("#revenue-chart").bind("plotclick", function(event, pos, item) {
         if (item) {
             plot.highlight(item.series, item.datapoint);
         }
     });
 
-    if (jQuery('#server-chart').length > 0) {
+    if (jQuery('#revenue-chart').length > 0) {
         plot.setData([{
             data: uploads,
             color: '#1ABC9C',
