@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1, version: :v1, module: :v1 do
-      namespace :billing, module: :billing do
+      scope :billing do
         #resources :sku
         put :sku, to: 'products#update'
         #resources :billable

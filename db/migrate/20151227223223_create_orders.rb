@@ -4,7 +4,13 @@ class CreateOrders < ActiveRecord::Migration
       t.decimal    :total
       t.string     :state
       t.references :user
-      t.datetime   :completed_at
+      t.references :product
+      t.string     :identifier
+      t.string     :group_sku
+      t.string     :group_identifier
+      t.integer    :units
+      t.datetime   :starts_at
+      t.datetime   :ends_at
       t.timestamps null: false
       t.datetime   :deleted_at
     end

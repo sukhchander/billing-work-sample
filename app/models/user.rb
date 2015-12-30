@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   include Gravtastic
   gravtastic
 
+  has_many :orders
+
 private
 
   def set_default_role
