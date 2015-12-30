@@ -1,4 +1,2 @@
-# Override your default settings for the Production environment here.
-#
-# Example:
-#   configatron.file.storage = :s3
+configatron.redis.url = "redis://127.0.0.1:6379/production/0"
+configatron.redis.namespace = "rocketboard:production"
