@@ -9,8 +9,8 @@ class CreateOrders < ActiveRecord::Migration
       t.string     :group_sku
       t.string     :group_identifier
       t.integer    :units
-      t.datetime   :starts_at
-      t.datetime   :ends_at
+      t.datetime   :start_at
+      t.datetime   :end_at
       t.timestamps null: false
       t.datetime   :deleted_at
     end

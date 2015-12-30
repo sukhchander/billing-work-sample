@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20151227223237) do
     t.string   "group_sku"
     t.string   "group_identifier"
     t.integer  "units"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.datetime "deleted_at"
