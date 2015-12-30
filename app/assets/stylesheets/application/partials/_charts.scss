@@ -33,7 +33,7 @@
     }
 }
 
-.server-chart {
+.revenue-chart {
     ul {
         margin: 0;
         padding: 0;
@@ -101,7 +101,7 @@
 
 .stats .panel-body li i {}
 
-#server-chart {
+#revenue-chart {
     height: 270px;
 }
 
@@ -113,12 +113,4 @@
 #doughnut-canvas-holder {
     max-width: 137px;
     min-width: 80px;
-}
-
-//sparkline
-.jqstooltip {
-    font-size: $size16px;
-    padding: 25px;
-    min-width: 35px!important;
-    min-height: 35px!important;
 }

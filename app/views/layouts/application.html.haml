@@ -12,7 +12,6 @@
 
     = render "layouts/partials/favicon"
 
-    = stylesheet_link_tag 'base'
     = stylesheet_link_tag 'application', media: 'all'
 
     = csrf_meta_tags
@@ -35,7 +34,6 @@
 
         = render "layouts/partials/footer"
 
-  = javascript_include_tag 'base'
   = javascript_include_tag 'application'
 
   = yield :javascript
