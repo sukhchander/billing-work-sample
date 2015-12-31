@@ -236,6 +236,8 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
+    font-awesome-rails (4.5.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     git-version-bump (0.15.1)
     globalid (0.3.6)
@@ -481,6 +483,8 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       json (~> 1.0)
       redis (~> 3.2, >= 3.2.1)
+    simple-line-icons-rails (0.0.1)
+      railties (>= 3.2, < 5.0)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -558,6 +562,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.2.1)
   ffaker
   fog
+  font-awesome-rails
   gravtastic
   guard-bundler
   guard-rails
@@ -597,6 +602,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda-matchers (~> 3.0)
   sidekiq (~> 4.0)
+  simple-line-icons-rails
   simple_form
   sinatra
   spring
