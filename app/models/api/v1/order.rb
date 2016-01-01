@@ -8,13 +8,14 @@ module Api
       acts_as_paranoid
 
       belongs_to :user
-
       belongs_to :product
 
       after_initialize :set_state, if: :new_record?
       after_initialize :set_units, if: :new_record?
 
       before_save :update_total
+
+      scope :complete, -> { where(state: :end).where.not(end_at: nil) }
 
     private
 

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1, version: :v1, module: :v1 do
+
       scope :billing do
         #resources :sku
         put :sku, to: 'products#update'
@@ -11,10 +12,15 @@ Rails.application.routes.draw do
         put :billable, to: 'orders#update'
         delete :billable, to: 'orders#destroy'
       end
+
+      scope :data do
+        get '/chart/:type', to: 'data#show', as: :chart_type
+      end
+
     end
   end
 
-  get '/dashboard', to: 'dashboard#index'
+  #get '/dashboard', to: 'dashboard#index'
 
   # Authentication :: Override default setup = devise_for :users
   #resources :users

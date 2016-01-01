@@ -7,6 +7,12 @@ module Api
 
       respond_to :json
 
+    protected
+
+      def cache_key(args)
+        args.join('#')
+      end
+
     end
 
   end

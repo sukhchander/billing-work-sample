@@ -223,22 +223,66 @@ var Rocketboard = function() {
             }
         ];
 
-        window.onload = function() {
-            var ctx1 = document.getElementById("canvas1").getContext("2d");
-            window.myLine = new Chart(ctx1).Line(lineChartData, {
-                responsive: true
-            });
+        var max = 0;
+        var steps = 10;
+        var chartData = {};
 
-            /*var ctx2 = document.getElementById("canvas2").getContext("2d");
-            window.myBar = new Chart(ctx2).Bar(barChartData, {
-                responsive: true
-            });*/
+        var lineChartData = {}
 
-            var ctx3 = document.getElementById("doughnut-chart-area").getContext("2d");
-            window.myDoughnut = new Chart(ctx3).Doughnut(doughnutData, {
-                responsive: true
-            });
+        var chartData = function (url) {
+          $.ajax({
+              url: url,
+              method: 'GET',
+              dataType: 'json',
+              success: function (d) {
+
+                lineChartData = {
+                  labels: d.xAxis,
+                  datasets: [{
+                    fillColor: 'rgba(26,188,156,0.5)',
+                    strokeColor: 'rgba(26,188,156,1)',
+                    pointColor: 'rgba(220,220,220,1)',
+                    pointStrokeColor: '#fff',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(220,220,220,1)',
+                    data: d.zAxis
+                  }]
+                };
+                console.log(lineChartData.labels);
+                console.log(lineChartData.datasets[0]["data"]);
+
+                var ctx1 = document.getElementById("canvas1").getContext("2d");
+                window.myLine = new Chart(ctx1).Line(lineChartData, {
+                  //scaleOverride: true,
+                  //scaleSteps: 10000,
+                  //scaleStepWidth: 10,
+                  //scaleStartValue: 0,
+                  responsive: true
+                });
+
+            }
+          });
         };
+
+
+        window.onload = function() {
+
+          var url = '/api/v1/data/chart/all';
+
+          chartData(url);
+
+          /*var ctx2 = document.getElementById("canvas2").getContext("2d");
+          window.myBar = new Chart(ctx2).Bar(barChartData, {
+              responsive: true
+          });*/
+
+          var ctx3 = document.getElementById("doughnut-chart-area").getContext("2d");
+          window.myDoughnut = new Chart(ctx3).Doughnut(doughnutData, {
+              responsive: true
+          });
+
+        };
+
     };
 
     var formValidation = function() {
