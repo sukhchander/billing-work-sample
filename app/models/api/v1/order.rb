@@ -18,11 +18,11 @@ module Api
       scope :complete, -> { where(state: :end).where.not(end_at: nil) }
 
       def self.total_revenue
-        ActiveSupport::NumberHelper::number_to_currency(Order.all.sum(:total))
+        ActiveSupport::NumberHelper::number_to_currency(Order.complete.sum(:total))
       end
 
       def self.total_hours
-        ActiveSupport::NumberHelper::number_to_delimited(Order.all.sum(:units))
+        ActiveSupport::NumberHelper::number_to_delimited(Order.complete.all.sum(:units))
       end
 
       def self.total_products
