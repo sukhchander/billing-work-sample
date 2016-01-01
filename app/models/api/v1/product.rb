@@ -11,6 +11,10 @@ module Api
 
       has_many :orders
 
+      def self.total_products
+        ActiveSupport::NumberHelper::number_to_delimited(Product.count)
+      end
+
     end
 
   end

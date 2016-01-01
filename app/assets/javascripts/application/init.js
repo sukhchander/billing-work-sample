@@ -257,7 +257,9 @@ var Rocketboard = function() {
                   //scaleSteps: 10000,
                   //scaleStepWidth: 10,
                   //scaleStartValue: 0,
-                  responsive: true
+                  responsive: true,
+                  scaleLabel : "<%= '$ ' + value  %>",
+                  tooltipTemplate: "<%= '$ ' + value %>"
                 });
 
             }

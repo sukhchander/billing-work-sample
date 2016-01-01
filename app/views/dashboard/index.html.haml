@@ -29,31 +29,35 @@
           .panel.panel-solid-success.widget-mini
             .panel-body
               %i.icon-bar-chart
-              %span.total.text-center $3,200
+              %span.total.text-center
+                = Api::V1::Order.total_revenue
               %span.title.text-center Total Revenue
         .col-md-3
           .panel.widget-mini
             .panel-body
               %i.icon-layers
-              %span.total.text-center 9
-              %span.title.text-center Containers
+              %span.total.text-center
+                = Api::V1::Product.total_products
+              %span.title.text-center Products
         .col-md-6
           .panel.widget-mini
             .panel-body
               %i.icon-clock
-              %span.total.text-center 866,130
-              %span.title.text-center Container Hours
+              %span.total.text-center
+                = Api::V1::Order.total_hours
+              %span.title.text-center Hours
         .col-md-3
           .panel.widget-mini
             .panel-body
               %i.icon-user
-              %span.total.text-center 856
+              %span.total.text-center
+                = Api::V1::Order.total_customers
               %span.title.text-center Customers
 
     .col-xs-12.col-sm-6.col-md-6.col-lg-4
       .panel.panel-default.browser-chart
         .panel-heading
-          %h3.panel-title CONTAINER HOURS
+          %h3.panel-title PRODUCT HOURS
         .panel-body
           .row
             .col-xs-6.col-sm-6.col-md-6.col-lg-6
