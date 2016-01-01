@@ -113,11 +113,11 @@ var Rocketboard = function() {
             $(this).closest('.flip-wrapper').toggleClass('flipped')
         });
     };
-
     var dateRangePicker = function() {
         var today = new Date();
+        today.setMonth(today.getMonth(),0)
         var start = new Date();
-        start.setMonth(start.getMonth()-1);
+        start.setMonth(start.getMonth()-6);
         var min = new Date();
         min.setMonth(min.getMonth()-12);
         $('input[name="daterange"]').daterangepicker({
@@ -148,87 +148,7 @@ var Rocketboard = function() {
 
     var chartJs = function() {
 
-        var randomScalingFactor = function() {
-            return Math.round(Math.random() * 100)
-        };
-        var lineChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [{
-                label: 'Network Usage',
-                fillColor: 'rgba(26,188,156,0.5)',
-                strokeColor: 'rgba(26,188,156,1)',
-                pointColor: 'rgba(220,220,220,1)',
-                pointStrokeColor: '#fff',
-                pointHighlightFill: '#fff',
-                pointHighlightStroke: 'rgba(220,220,220,1)',
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-            }, {
-                label: 'CPU Load',
-                fillColor: 'rgba(31,123,182,0.5)',
-                strokeColor: 'rgba(31,123,182,1)',
-                pointColor: 'rgba(151,187,205,1)',
-                pointStrokeColor: '#fff',
-                pointHighlightFill: '#fff',
-                pointHighlightStroke: 'rgba(151,187,205,1)',
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-            }]
-        }
-
-        var randomScalingFactor = function() {
-            return Math.round(Math.random() * 100)
-        };
-        var barChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [{
-                fillColor: 'rgba(26,188,156,0.5)',
-                strokeColor: 'rgba(255,255,255,0.8)',
-                highlightFill: 'rgba(26,188,156,1)',
-                highlightStroke: 'rgba(255,255,255,0.8)',
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-            }, {
-                label: 'CPU Load',
-                fillColor: 'rgba(31,123,182,0.5)',
-                strokeColor: 'rgba(255,255,255,0.8)',
-                highlightFill: 'rgba(31,123,182,1)',
-                highlightStroke: 'rgba(255,255,255,0.8)',
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-            }]
-        }
-
-        var doughnutData = [{
-                value: 300,
-                color: "#1ABC9C",
-                highlight: "#1ABC9C",
-                label: "Chrome"
-            }, {
-                value: 50,
-                color: "#556B8D",
-                highlight: "#556B8D",
-                label: "IE"
-            }, {
-                value: 100,
-                color: "#EDCE8C",
-                highlight: "#EDCE8C",
-                label: "Safari"
-            }, {
-                value: 40,
-                color: "#CED1D3",
-                highlight: "#1F7BB6",
-                label: "Other"
-            }, {
-                value: 120,
-                color: "#1F7BB6",
-                highlight: "#1F7BB6",
-                label: "Firefox"
-            }
-        ];
-
-        var max = 0;
-        var steps = 10;
-        var chartData = {};
-
         var areaChartData = {};
-
         var drawAreaChart = function (url) {
           $.ajax({
               url: url,
@@ -239,24 +159,23 @@ var Rocketboard = function() {
                 areaChartData = {
                   labels: d.xAxis,
                   datasets: [{
-                    fillColor: 'rgba(26,188,156,0.5)',
-                    strokeColor: 'rgba(26,188,156,1)',
-                    pointColor: 'rgba(220,220,220,1)',
+                    //fillColor: 'rgba(26,188,156,0.5)',
+                    //strokeColor: 'rgba(26,188,156,1)',
+                    //pointColor: 'rgba(220,220,220,1)',
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
                     pointStrokeColor: '#fff',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(220,220,220,1)',
                     data: d.zAxis
                   }]
                 };
-                console.log(areaChartData.labels);
-                console.log(areaChartData.datasets[0]["data"]);
+                //console.log(areaChartData.labels);
+                //console.log(areaChartData.datasets[0]["data"]);
 
                 var ctx1 = document.getElementById("canvas1").getContext("2d");
                 window.myLine = new Chart(ctx1).Line(areaChartData, {
-                  //scaleOverride: true,
-                  //scaleSteps: 10000,
-                  //scaleStepWidth: 10,
-                  //scaleStartValue: 0,
                   responsive: true,
                   scaleLabel : "<%= '$ ' + value  %>",
                   tooltipTemplate: "<%= '$ ' + value %>"
@@ -266,38 +185,7 @@ var Rocketboard = function() {
           });
         };
 
-        var doughnutChartData = [
-/*
-          {
-                value: 300,
-                color: "#1ABC9C",
-                highlight: "#1ABC9C",
-                label: "Chrome"
-            }, {
-                value: 50,
-                color: "#556B8D",
-                highlight: "#556B8D",
-                label: "IE"
-            }, {
-                value: 100,
-                color: "#EDCE8C",
-                highlight: "#EDCE8C",
-                label: "Safari"
-            }, {
-                value: 40,
-                color: "#CED1D3",
-                highlight: "#1F7BB6",
-                label: "Other"
-            }, {
-                value: 120,
-                color: "#1F7BB6",
-                highlight: "#1F7BB6",
-                label: "Firefox"
-            }
-*/
-        ];
-
-
+        var doughnutChartData = [];
         var drawDoughnutChart = function (url) {
           $.ajax({
             url: url,
@@ -306,7 +194,6 @@ var Rocketboard = function() {
             success: function (d) {
 
               doughnutChartData = d.data;
-              console.log(doughnutChartData);
 
               var ctx3 = document.getElementById("doughnut-chart-area").getContext("2d");
               window.myDoughnut = new Chart(ctx3).Doughnut(doughnutChartData, {
@@ -318,18 +205,9 @@ var Rocketboard = function() {
 
         window.onload = function() {
 
-          var url = '/api/v1/data/chart/all';
+          drawAreaChart("/api/v1/data/chart/all");
 
-          drawAreaChart(url);
-
-          url = '/api/v1/data/chart/product_breakdown';
-
-          drawDoughnutChart(url);
-
-          /*var ctx2 = document.getElementById("canvas2").getContext("2d");
-          window.myBar = new Chart(ctx2).Bar(barChartData, {
-              responsive: true
-          });*/
+          drawDoughnutChart("/api/v1/data/chart/usage");
 
         };
 
