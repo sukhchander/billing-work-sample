@@ -6,9 +6,7 @@ Rails.application.routes.draw do
     namespace :v1, version: :v1, module: :v1 do
 
       scope :billing do
-        #resources :sku
         put :sku, to: 'products#update'
-        #resources :billable
         put :billable, to: 'orders#update'
         delete :billable, to: 'orders#destroy'
       end
@@ -20,9 +18,8 @@ Rails.application.routes.draw do
     end
   end
 
-  #get '/dashboard', to: 'dashboard#index'
+  get '/dashboard', to: 'dashboard#index'
 
-  # Authentication :: Override default setup = devise_for :users
   #resources :users
 
   devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations, :unlocks]
@@ -31,6 +28,8 @@ Rails.application.routes.draw do
 
     authenticated :user do
       root to: 'dashboard#index'
+
+      get 'dashboard/:type', to: 'dashboard#show', as: :dashboard_type
     end
 
     unauthenticated :user do

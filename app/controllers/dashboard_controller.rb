@@ -5,6 +5,11 @@ class DashboardController < ApplicationController
   def index
   end
 
+  def show
+    type = params[:type]
+    render type.to_sym if type.present?
+  end
+
 private
 
   def secure_params
