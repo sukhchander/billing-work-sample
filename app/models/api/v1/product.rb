@@ -15,6 +15,11 @@ module Api
         ActiveSupport::NumberHelper::number_to_delimited(Product.count)
       end
 
+      def self.usage_breakdown
+        query = Api::V1::Order.complete
+        query.joins(:product).select(:product).select(:units).group(:product).sum(:units)
+      end
+
     end
 
   end

@@ -1,0 +1,5 @@
+- selector = [:success, :primary, :warning, :info, :default].sample
+
+%li
+  %i{class: "fa fa-circle #{selector}-color"}
+  = product.sku.gsub('capsule:','')
