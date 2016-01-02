@@ -8,7 +8,7 @@
 
 %section#main-content
 
-  - Api::V1::Order.customers.each do |customer|
+  - User.with_orders.all.each do |customer|
     .row
       .col-md-12.col-lg-12
         .panel.panel-default
@@ -47,7 +47,7 @@
                 .row
                   .col-lg-12
                     .line-chart
-                      %canvas{id: "product-chart-#{product.id}", class: "product-chart", height: "100"}
+                      %canvas{id: "product-chart-#{customer.id}", class: "product-chart", height: "100"}
 
 - content_for :javascript do
   :javascript

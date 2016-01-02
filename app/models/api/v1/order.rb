@@ -29,16 +29,25 @@ module Api
         DashboardHelper.format_unit(query.all.sum(:units))
       end
 
-      def self.total_products(date_range=nil)
+      def self.products(date_range=nil)
         window = date_range.present? ? date_range : DashboardHelper.determine_window
-        query = Api::V1::Order.complete.where(end_at: window)
-        query.joins(:product).select(:product)
-        DashboardHelper.format_unit(Product.count)
+        query = Api::V1::Order.complete.where(end_at: window).includes(:product)
+        query.joins(:product).select(:product_id)
+      end
+
+      def self.total_products(date_range=nil)
+        query = self.total_products(date_range).count(:product_id)
+        DashboardHelper.format_unit(query.count)
+      end
+
+      def self.customers(date_range=nil)
+        window = date_range.present? ? date_range : DashboardHelper.determine_window
+        query = Api::V1::Order.complete.where(end_at: window).includes(:user)
+        query.joins(:user).group(:user_id)
       end
 
       def self.total_customers(date_range=nil)
-        window = date_range.present? ? date_range : DashboardHelper.determine_window
-        query = Api::V1::Order.complete.where(end_at: window).joins(:user).group(:user_id).count(:user_id)
+        query = self.customers.count(:user_id)
         DashboardHelper.format_unit(query.count)
       end
 
