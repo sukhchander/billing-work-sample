@@ -1,7 +1,8 @@
 .pageheader
   .breadcrumb-wrapper
     %ol.breadcrumb
-      %li Dashboard
+      %li.active
+        = link_to :Dashboard, dashboard_path
 
 %section#main-content
 
@@ -64,8 +65,8 @@
 
             .col-xs-6.col-sm-6.col-md-6.col-lg-6
               %ul
-                - usage_breakdown_display = Api::V1::Product.usage_breakdown_display
-                - usage_breakdown_display.each do |usage|
+                - breakdown = Api::V1::Product.breakdown(@date_range,true)
+                - breakdown.each do |usage|
                   %li
                     %i{class: "fa fa-circle #{usage[:color]}-color"}
                     = usage[:label]

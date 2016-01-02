@@ -1,16 +1,18 @@
 .pageheader
   .breadcrumb-wrapper
     %ol.breadcrumb
-      %li Dashboard
-      %li.active Products
+      %li
+        = link_to :Dashboard, dashboard_path
+      %li.active
+        = link_to :Products, dashboard_path(:products)
 
 %section#main-content
 
-  -# product_performance = Api::V1::Product.performance
   - Api::V1::Product.all.each do |product|
     .row
       .col-md-12.col-lg-12
         .panel.panel-default
+
           .panel-heading
             %h3.panel-title
               %b= product.display_name
@@ -18,26 +20,34 @@
               %i.fa.fa-calendar-o
               %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
               %b.caret
+
           .panel-body.server-chart
+
             .row
-              .col-md-12.col-lg-2
-                %p= product.display_name
-                - product.performance.each do |chunk|
-                  %p
-                    = chunk.x_val
-                  %p
-                    = chunk.y_val
-                    Orders
-                  %p
-                    = number_to_currency(chunk.amount)
-                = number_to_currency(product.performance.map(&:amount).sum)
+
+              .col-md-4.col-lg-4
+
+                .col-md-12
+                  .panel.panel-solid-primary.widget-mini
+                    .panel-body
+                      %i.icon-clock
+                      %span.total.text-center
+                        = product.performance_units
+                      %span.title.text-center Units
+
+                .col-md-12
+                  .panel.panel-solid-success.widget-mini
+                    .panel-body
+                      %i.icon-bar-chart
+                      %span.total.text-center
+                        = product.performance_amount
 
 
-              .col-md-12.col-lg-10
+              .col-md-8.col-lg-8
                 .row
                   .col-lg-12
                     .line-chart
-                      %canvas#canvas1{height: "90"}
+                      %canvas{id: "product-chart-#{product.id}", class: "product-chart", height: "100"}
 
 - content_for :javascript do
   :javascript

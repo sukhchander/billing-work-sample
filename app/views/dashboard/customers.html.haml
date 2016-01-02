@@ -1,8 +1,10 @@
 .pageheader
   .breadcrumb-wrapper
     %ol.breadcrumb
-      %li Dashboard
-      %li.active Customers
+      %li
+        = link_to :Dashboard, dashboard_path
+      %li.active
+        = link_to :Customers, dashboard_path(:customers)
 
 %section#main-content
 

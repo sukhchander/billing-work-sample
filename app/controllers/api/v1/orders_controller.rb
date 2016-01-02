@@ -14,7 +14,6 @@ module Api
           @order.state = :update if @order.units > 1
           @order.save
         end
-
         respond_with @order
       end
 

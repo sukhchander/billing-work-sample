@@ -12,23 +12,33 @@ module Api
       has_many :orders
 
       def self.total_products
-        ActiveSupport::NumberHelper::number_to_delimited(Product.count)
+        DashboardHelper.format_unit(Product.count)
       end
 
-      COLORS = [:success, :primary, :warning, :info, :danger, :default, :alert, :secondary, :tertiary]
+      COLORS = {
+        success: '#1F7BB6',
+        primary: '#e25d5d',
+        warning: '#EDCE8C',
+        info: '#1F7BB6',
+        danger: '#e25d5d',
+        default: '#1F7BB6',
+        alert: '#f5aca6',
+        secondary: '#a6ca8a',
+        tertiary: '#f2c779'
+      }
 
-      def self.usage_breakdown(date_range=nil)
-        window = date_range.present? ? date_range : determine_window
-        query = Api::V1::Order.complete.where(end_at: window)
+      def self.breakdown_data(date_range=nil)
+        range = date_range.present? ? date_range : @date_range
+        query = Api::V1::Order.complete.where(end_at: range).includes(:product)
         query.joins(:product).select(:product).select(:units).group(:product).sum(:units)
       end
 
-      def self.usage_breakdown_display(date_range=nil, hex=false)
+      def self.breakdown_display(date_range=nil, display=false, xhr=false)
 
-        records = self.usage_breakdown(date_range)
+        records = self.breakdown_data(date_range)
 
-        colors = COLORS
-        colors = %w(#1F7BB6 #e25d5d #EDCE8C #1F7BB6 #e25d5d #1F7BB6 #f5aca6 #a6ca8a #f2c779) if hex
+        colors = COLORS.keys
+        colors = COLORS.values if xhr
 
         result = []
 
@@ -47,11 +57,23 @@ module Api
 
       end
 
+      def performance_amount
+        DashboardHelper.format_currency(self.performance.map(&:amount).sum)
+      end
+
+      def performance_units
+        DashboardHelper.format_unit(self.performance.map(&:y_val).sum)
+      end
+
+      def self.breakdown(date_range=nil, display=false, xhr=false)
+        self.breakdown_display(date_range, display, xhr)
+      end
+
       def performance(date_range=nil)
-        window = date_range.present? ? date_range : determine_window
+        window = date_range.present? ? date_range : DashboardHelper.determine_window
         query = Api::V1::Order.complete.where(end_at: window).where(product: self).includes(:product)
         filter = "product_id, COUNT(id) as y_val, to_char(date(end_at), 'YYYY-MM') AS x_val, SUM(total) AS amount"
-        query.select(filter).group([:product_id, :x_val]).order(:product_id).sort_by(&:x_val)
+        query.select(filter).group([:product_id, :x_val]).order(:product_id)
       end
 
       def self.performance_display(date_range=nil)
@@ -68,20 +90,6 @@ module Api
 
       def display_name
         self.sku.gsub('capsule:','')
-      end
-
-    private
-
-      def determine_window
-        start_date = 6.months.ago.beginning_of_day
-        end_date = 1.day.ago.end_of_day
-        start_date..end_date
-      end
-
-      def self.determine_window
-        start_date = 6.months.ago.beginning_of_day
-        end_date = 1.day.ago.end_of_day
-        start_date..end_date
       end
 
     end
