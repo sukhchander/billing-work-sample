@@ -8,29 +8,17 @@ module Api
       CACHE_TIME = 10.minutes
 
       def show
-        chart = params[:type]
-        data = send(chart.to_sym)
+        type = params[:type]
+        data = send(type.to_sym) if type.present?
         respond_with data
       end
 
     private
 
-      def all
-
-        records = Rails.cache.fetch(cache_key([:product_revenue_q, @date_range]), expires_in: CACHE_TIME) do
-          query = Api::V1::Order.complete.where(end_at: @date_range)
-          selectors = "COUNT(id) AS y_val, to_char(date(end_at), 'MM/YYYY') AS x_val, SUM(total) AS z_val"
-          query.select(selectors).group(:x_val)
-        end.sort_by(&:x_val)
-
-        result = Rails.cache.fetch(cache_key([:product_revenue_r, @date_range]), expires_in: CACHE_TIME) do
-          {
-            xAxis: records.collect(&:x_val),
-            yAxis: records.collect(&:y_val).map(&:to_i),
-            zAxis: records.collect(&:z_val).map(&:to_i),
-          }
+      def aggregate
+        Rails.cache.fetch(cache_key([:aggregate, @date_range]), expires_in: CACHE_TIME) do
+          Api::V1::Order.aggregate(@date_range)
         end
-
       end
 
       def usage

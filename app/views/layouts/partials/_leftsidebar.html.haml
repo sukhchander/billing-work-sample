@@ -6,19 +6,19 @@
 
     %li{class: "#{:active if controller?('dashboard') && action?('index')}"}
       = link_to dashboard_path do
-        %i.fa.fa-fw.fa-tachometer
+        %i.fa.fa-fw.fa-cubes
         Dashboard
 
-    %li{class: "nav-dropdown open #{'active' if controller?('dashboard') && action?('show')}"}
+    %li{class: "nav-dropdown #{'active open' if controller?('dashboard') && action?('show')}"}
       = link_to '#' do
         %i.fa.fa-fw.fa-bar-chart-o
         Analytics
       %ul.nav-sub
-        %li{class: "#{'active open' if controller?('dashboard') && params[:type] == :customers}"}
+        %li{class: "#{'active' if controller?('dashboard') && params[:type] == :customers}"}
           = link_to dashboard_type_path(:customers) do
             %i.fa.fa-fw.fa-user
             Customers
-        %li{class: "#{'active open' if controller?('dashboard') && params[:type] == :products}"}
+        %li{class: "#{'active' if controller?('dashboard') && params[:type] == :products}"}
           = link_to dashboard_type_path(:products) do
             %i.fa.fa-fw.icon-layers
             Products

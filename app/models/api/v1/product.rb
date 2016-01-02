@@ -47,20 +47,41 @@ module Api
 
       end
 
+      def performance(date_range=nil)
+        window = date_range.present? ? date_range : determine_window
+        query = Api::V1::Order.complete.where(end_at: window).where(product: self).includes(:product)
+        filter = "product_id, COUNT(id) as y_val, to_char(date(end_at), 'YYYY-MM') AS x_val, SUM(total) AS amount"
+        query.select(filter).group([:product_id, :x_val]).order(:product_id).sort_by(&:x_val)
+      end
+
+      def self.performance_display(date_range=nil)
+
+        records = self.performance(date_range)
+
+        {
+          xAxis: records.collect(&:x_val),
+          yAxis: records.collect(&:y_val),
+          zAxis: records.collect(&:z_val)
+        }
+
+      end
+
       def display_name
         self.sku.gsub('capsule:','')
       end
 
     private
 
-      def self.determine_window
+      def determine_window
         start_date = 6.months.ago.beginning_of_day
         end_date = 1.day.ago.end_of_day
         start_date..end_date
       end
 
-      def self.cache_key(args)
-        args.join('#')
+      def self.determine_window
+        start_date = 6.months.ago.beginning_of_day
+        end_date = 1.day.ago.end_of_day
+        start_date..end_date
       end
 
     end

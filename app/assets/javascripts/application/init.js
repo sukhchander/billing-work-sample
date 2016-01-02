@@ -113,6 +113,13 @@ var Rocketboard = function() {
             $(this).closest('.flip-wrapper').toggleClass('flipped')
         });
     };
+
+
+    function cb(start, end) {
+      $('#reportrange span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+    }
+    cb(moment().subtract(29, 'days'), moment());
+
     var dateRangePicker = function() {
         var today = new Date();
         today.setMonth(today.getMonth(),0)
@@ -120,13 +127,21 @@ var Rocketboard = function() {
         start.setMonth(start.getMonth()-6);
         var min = new Date();
         min.setMonth(min.getMonth()-12);
+
         $('input[name="daterange"]').daterangepicker({
-            opens: "left",
-            format: 'YYYY-MM-DD',
-            startDate: start.toJSON().slice(0,10),
-            endDate: today.toJSON().slice(0,10),
-            minDate: min.toJSON().slice(0,10),
-            maxDate: today.toJSON().slice(0,10)
+          opens: "left",
+          format: 'YYYY-MM-DD',
+          startDate: start.toJSON().slice(0,10),
+          endDate: today.toJSON().slice(0,10),
+          minDate: min.toJSON().slice(0,10),
+          maxDate: today.toJSON().slice(0,10),
+          ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          }
         });
 
         $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
@@ -205,7 +220,7 @@ var Rocketboard = function() {
 
         window.onload = function() {
 
-          drawAreaChart("/api/v1/data/chart/all");
+          drawAreaChart("/api/v1/data/chart/aggregate");
 
           drawDoughnutChart("/api/v1/data/chart/usage");
 

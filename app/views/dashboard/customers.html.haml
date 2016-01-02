@@ -1,7 +1,8 @@
 .pageheader
-  .breadcrumb-wrapper.hidden-xs
+  .breadcrumb-wrapper
     %ol.breadcrumb
-      %li.active Dashboard > Customers
+      %li Dashboard
+      %li.active Customers
 
 %section#main-content
 
@@ -12,7 +13,7 @@
           %h3.panel-title Total Revenue
           .reportdate.actions
             %span
-              %input{type: :text, name: :daterange, value: "#{6.months.ago.strftime("%Y-%m-%d")} - #{1.day.ago.strftime("%Y-%m-%d")}"}
+              %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
               %i.fa.fa-calendar-o
         .panel-body.revenue-chart
           .row
@@ -20,7 +21,7 @@
               .row
                 .col-md-12.col-lg-12
                   .line-chart
-                    %canvas#canvas1{height: "75"}
+                    %canvas#canvas1{height: "100"}
 
   .row
     .col-md-12.col-lg-8
