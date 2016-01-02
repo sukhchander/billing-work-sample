@@ -11,8 +11,8 @@
 
     %li{class: "nav-dropdown #{'active open' if controller?('dashboard') && action?('show')}"}
       = link_to '#' do
-        %i.fa.fa-fw.fa-bar-chart-o
-        Analytics
+        %i.fa.fa-fw.fa-tachometer
+        Performance
       %ul.nav-sub
         %li{class: "#{'active' if controller?('dashboard') && params[:type] == :customers}"}
           = link_to dashboard_type_path(:customers) do

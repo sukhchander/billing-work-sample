@@ -8,75 +8,46 @@
 
 %section#main-content
 
-  .row
-    .col-md-12.col-lg-12
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title Total Revenue
-          .reportdate.actions
-            %span
-              %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
+  - Api::V1::Order.customers.each do |customer|
+    .row
+      .col-md-12.col-lg-12
+        .panel.panel-default
+
+          .panel-heading
+            %h3.panel-title
+              %b= customer.email
+            .reportdate.actions
               %i.fa.fa-calendar-o
-        .panel-body.revenue-chart
-          .row
-            .col-md-12.col-lg-12
-              .row
-                .col-md-12.col-lg-12
-                  .line-chart
-                    %canvas#canvas1{height: "100"}
+              %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
+              %b.caret
 
-  .row
-    .col-md-12.col-lg-8
-      .row
-        .col-md-12
-          .panel.panel-solid-success.widget-mini
-            .panel-body
-              %i.icon-bar-chart
-              %span.total.text-center
-                = Api::V1::Order.total_revenue
-              %span.title.text-center Total Revenue
-        .col-md-3
-          .panel.widget-mini
-            .panel-body
-              %i.icon-layers
-              %span.total.text-center
-                = Api::V1::Product.total_products
-              %span.title.text-center Products
-        .col-md-6
-          .panel.widget-mini
-            .panel-body
-              %i.icon-clock
-              %span.total.text-center
-                = Api::V1::Order.total_hours
-              %span.title.text-center Units
-        .col-md-3
-          .panel.widget-mini
-            .panel-body
-              %i.icon-user
-              %span.total.text-center
-                = Api::V1::Order.total_customers
-              %span.title.text-center Customers
+          .panel-body.server-chart
 
-    .col-xs-12.col-sm-6.col-md-6.col-lg-4
-      .panel.panel-default.browser-chart
-        .panel-heading
-          %h3.panel-title PRODUCT UNITS
+            .row
 
-        .panel-body
-          .row
+              .col-md-4.col-lg-4
 
-            .col-xs-6.col-sm-6.col-md-6.col-lg-6
-              %ul
-                - usage_breakdown_display = Api::V1::Product.usage_breakdown_display
-                - usage_breakdown_display.each do |usage|
-                  %li
-                    %i{class: "fa fa-circle #{usage[:color]}-color"}
-                    = usage[:label]
+                .col-md-12
+                  .panel.panel-solid-primary.widget-mini
+                    .panel-body
+                      %i.icon-clock
+                      %span.total.text-center
+                        = customer.performance_units
+                      %span.title.text-center Units
 
-            .col-xs-6.col-sm-6.col-md-6.col-lg-6
-              #doughnut-canvas-holder
-                %canvas#doughnut-chart-area{height: "137", width: "137"}
+                .col-md-12
+                  .panel.panel-solid-success.widget-mini
+                    .panel-body
+                      %i.icon-bar-chart
+                      %span.total.text-center
+                        = customer.performance_amount
 
+
+              .col-md-8.col-lg-8
+                .row
+                  .col-lg-12
+                    .line-chart
+                      %canvas{id: "product-chart-#{product.id}", class: "product-chart", height: "100"}
 
 - content_for :javascript do
   :javascript
