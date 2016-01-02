@@ -8,8 +8,7 @@
 
 %section#main-content
 
-  - Api::V1::Order.products.each do |order|
-    - product = order.product
+  - Api::V1::Product.all.each do |product|
     .row
       .col-md-12.col-lg-12
         .panel.panel-default
