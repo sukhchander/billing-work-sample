@@ -8,7 +8,9 @@
 
 %section#main-content
 
-  - User.with_orders.all.each do |customer|
+  - customers = Api::V1::Order.customers.count
+  - customers.each_pair do |customer_id, num_orders|
+    - customer = User.find(customer_id)
     .row
       .col-md-12.col-lg-12
         .panel.panel-default
@@ -26,6 +28,14 @@
             .row
 
               .col-md-4.col-lg-4
+
+                .col-md-12
+                  .panel.panel-solid-primary.widget-mini
+                    .panel-body
+                      %i.icon-clock
+                      %span.total.text-center
+                        = num_orders
+                      %span.title.text-center Orders
 
                 .col-md-12
                   .panel.panel-solid-primary.widget-mini

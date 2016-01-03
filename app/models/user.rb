@@ -12,15 +12,20 @@ class User < ActiveRecord::Base
 
   has_many :orders
 
-  #scope :with_orders, -> {  orders.present? }
-  scope :with_orders, -> { joins('LEFT OUTER JOIN orders ON users.id = orders.user_id') }
+  def performance_data(date_range=nil)
+    window = date_range.present? ? date_range : DashboardHelper.determine_window
+    query = Api::V1::Order.complete.where(end_at: window).where(user: self).includes(:user)
+    query.joins(:user).group(:user_id)
+    filter = "user_id, SUM(units) AS total_units, COUNT(id) as y_val, to_char(date(end_at), 'YYYY-MM') AS x_val, SUM(total) AS amount"
+    query.select(filter).group([:user_id, :units, :x_val]).order(:user_id)
+  end
 
   def performance_amount
-    DashboardHelper.format_currency(10000)#self.performance.map(&:amount).sum)
+    DashboardHelper.format_currency(self.performance_data.map(&:amount).sum)
   end
 
   def performance_units
-    DashboardHelper.format_unit(10000)#self.performance.map(&:y_val).sum)
+    DashboardHelper.format_unit(self.performance_data.map(&:total_units).sum)
   end
 
 
