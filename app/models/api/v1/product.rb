@@ -61,8 +61,14 @@ module Api
       def performance_data(date_range=nil)
         window = date_range.present? ? date_range : DashboardHelper.determine_window
         query = Api::V1::Order.complete.where(end_at: window).where(product: self).includes(:product)
-        filter = "product_id, COUNT(id) as y_val, to_char(date(end_at), 'YYYY-MM') AS x_val, SUM(total) AS amount"
+        filter = "product_id, SUM(units) AS total_units, COUNT(id) as y_val, to_char(date(end_at), 'YYYY-MM') AS x_val, SUM(total) AS amount"
         query.select(filter).group([:product_id, :x_val]).order(:product_id)
+      end
+
+      def performance_orders(date_range=nil)
+        window = date_range.present? ? date_range : DashboardHelper.determine_window
+        query = Api::V1::Order.complete.where(end_at: window).where(product: self).includes(:product)
+        DashboardHelper.format_unit(query.all.count)
       end
 
       def performance_amount
@@ -70,7 +76,7 @@ module Api
       end
 
       def performance_units
-        DashboardHelper.format_unit(self.performance_data.map(&:y_val).sum)
+        DashboardHelper.format_unit(self.performance_data.map(&:total_units).sum)
       end
 
       def self.performance(product_id=nil, date_range=nil, display=false, xhr=false)

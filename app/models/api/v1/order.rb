@@ -23,7 +23,7 @@ module Api
         DashboardHelper.format_currency(query.sum(:total))
       end
 
-      def self.total_hours(date_range=nil)
+      def self.total_units(date_range=nil)
         window = date_range.present? ? date_range : DashboardHelper.determine_window
         query = Api::V1::Order.complete.where(end_at: window)
         DashboardHelper.format_unit(query.all.sum(:units))
@@ -54,8 +54,8 @@ module Api
       def self.aggregate(date_range=nil)
         window = date_range.present? ? date_range : DashboardHelper.determine_window
         query = Api::V1::Order.complete.where(end_at: window)
-        filter = "COUNT(id) AS y_val, to_char(date(end_at), 'MM/YYYY') AS x_val, SUM(total) AS z_val"
-        records = query.select(filter).group(:x_val)#.sort_by(&:x_val)
+        filter = "COUNT(id) AS y_val, to_char(date(end_at), 'YYYY-MM') AS x_val, SUM(total) AS z_val"
+        records = query.select(filter).group(:x_val).sort_by(&:x_val)
 
         {
           xAxis: records.collect(&:x_val),

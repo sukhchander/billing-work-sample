@@ -28,6 +28,14 @@
               .col-md-4.col-lg-4
 
                 .col-md-12
+                  .panel.panel-solid.widget-mini
+                    .panel-body
+                      %i.icon-layers
+                      %span.total.text-center
+                        = product.performance_orders
+                      %span.title.text-center Orders
+
+                .col-md-12
                   .panel.panel-solid-primary.widget-mini
                     .panel-body
                       %i.icon-clock
@@ -47,7 +55,7 @@
                   .col-lg-12
                     .line-chart
                       - product_id = product.id
-                      %canvas{id: "product-chart-#{product_id}", class: "product-chart", height: "100"}
+                      %canvas{id: "product-chart-#{product_id}", class: "product-chart", height: "150"}
                       - content_for :javascript do
                         :javascript
                           $(document).ready(function() {

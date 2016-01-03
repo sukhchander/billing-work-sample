@@ -38,14 +38,14 @@
             .panel-body
               %i.icon-layers
               %span.total.text-center
-                = Api::V1::Product.total_products
-              %span.title.text-center Products
+                = Api::V1::Order.complete.count
+              %span.title.text-center Orders
         .col-md-6
-          .panel.widget-mini
+          .panel.panel-solid-primary.widget-mini
             .panel-body
               %i.icon-clock
               %span.total.text-center
-                = Api::V1::Order.total_hours
+                = Api::V1::Order.total_units
               %span.title.text-center Units
         .col-md-3
           .panel.widget-mini

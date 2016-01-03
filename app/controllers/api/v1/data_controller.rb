@@ -41,7 +41,7 @@ module Api
       def performance_customer
         user_id = params[:id]
         Rails.cache.fetch(cache_key([:performance_customer, user_id, @date_range]), expires_in: CACHE_TIME) do
-          Api::V1::User.performance(user_id, @date_range, true, true)
+          User.performance(user_id, @date_range, true, true)
         end
       end
 
