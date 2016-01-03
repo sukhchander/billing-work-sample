@@ -121,8 +121,8 @@ var Rocketboard = function() {
                 var ctx1 = document.getElementById("canvas1").getContext("2d");
                 window.myLine = new Chart(ctx1).Line(areaChartData, {
                   responsive: true,
-                  scaleLabel : "<%= '$ ' + value  %>",
-                  tooltipTemplate: "<%= '$ ' + value %>"
+                  scaleLabel : "<%= accounting.formatMoney(value) %>",
+                  tooltipTemplate: "<%= accounting.formatMoney(value) %>"
                 });
 
             }
@@ -138,7 +138,7 @@ var Rocketboard = function() {
             success: function (d) {
 
               doughnutChartData = d.data;
-console.log(doughnutChartData);
+
               var ctx3 = document.getElementById("doughnut-chart-area").getContext("2d");
               window.myDoughnut = new Chart(ctx3).Doughnut(doughnutChartData, {
                 responsive: true
@@ -157,9 +157,47 @@ console.log(doughnutChartData);
 
     };
 
+    var drawAreaChart = function(url,selector) {
+      var areaChartData = {};
+      $.ajax({
+          url: url,
+          method: 'GET',
+          dataType: 'json',
+          success: function (d) {
+
+            areaChartData = {
+              labels: d.xAxis,
+              datasets: [{
+                //fillColor: 'rgba(26,188,156,0.5)',
+                //strokeColor: 'rgba(26,188,156,1)',
+                //pointColor: 'rgba(220,220,220,1)',
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: '#fff',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: 'rgba(220,220,220,1)',
+                data: d.zAxis
+              }]
+            };
+            //console.log(areaChartData.labels);
+            //console.log(areaChartData.datasets[0]["data"]);
+
+            var context = document.getElementById(selector).getContext("2d");
+            window.myLine = new Chart(context).Line(areaChartData, {
+              responsive: true,
+              scaleLabel : "<%= accounting.formatMoney(value) %>",
+              tooltipTemplate: "<%= accounting.formatMoney(value) %>"
+            });
+
+        }
+      });
+    };
+
     return {
         dateRangePicker: dateRangePicker,
-        chartJs: chartJs
+        chartJs: chartJs,
+        drawAreaChart: drawAreaChart
     };
 
 }();

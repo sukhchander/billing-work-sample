@@ -17,9 +17,9 @@
             %h3.panel-title
               %b= customer.email
             .reportdate.actions
-              %i.fa.fa-calendar-o
-              %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
-              %b.caret
+              %span
+                %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
+                %i.fa.fa-calendar-o
 
           .panel-body.server-chart
 

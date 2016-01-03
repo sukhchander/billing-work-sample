@@ -17,9 +17,9 @@
             %h3.panel-title
               %b= product.display_name
             .reportdate.actions
-              %i.fa.fa-calendar-o
-              %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
-              %b.caret
+              %span
+                %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
+                %i.fa.fa-calendar-o
 
           .panel-body.server-chart
 
@@ -42,16 +42,15 @@
                       %span.total.text-center
                         = product.performance_amount
 
-
               .col-md-8.col-lg-8
                 .row
                   .col-lg-12
                     .line-chart
-                      %canvas{id: "product-chart-#{product.id}", class: "product-chart", height: "100"}
-
-- content_for :javascript do
-  :javascript
-    $(document).ready(function() {
-        Rocketboard.dateRangePicker();
-        Rocketboard.chartJs();
-    });
+                      - product_id = product.id
+                      %canvas{id: "product-chart-#{product_id}", class: "product-chart", height: "100"}
+                      - content_for :javascript do
+                        :javascript
+                          $(document).ready(function() {
+                              Rocketboard.dateRangePicker();
+                              Rocketboard.drawAreaChart("/api/v1/data/chart/performance_product/#{product_id}","product-chart-#{product_id}")
+                          });

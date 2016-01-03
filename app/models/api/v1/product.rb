@@ -27,6 +27,10 @@ module Api
         tertiary: '#f2c779'
       }
 
+      def self.breakdown(date_range=nil, display=false, xhr=false)
+        self.breakdown_display(date_range, display, xhr)
+      end
+
       def self.breakdown_data(date_range=nil)
         range = date_range.present? ? date_range : @date_range
         query = Api::V1::Order.complete.where(end_at: range).includes(:product)
@@ -34,14 +38,12 @@ module Api
       end
 
       def self.breakdown_display(date_range=nil, display=false, xhr=false)
-
         records = self.breakdown_data(date_range)
 
         colors = COLORS.keys
         colors = COLORS.values if xhr
 
         result = []
-
         records.each_with_index do |record, index|
           product = record.first
           value = record.second
@@ -54,38 +56,41 @@ module Api
         end
 
         result
-
       end
 
-      def performance_amount
-        DashboardHelper.format_currency(self.performance.map(&:amount).sum)
-      end
-
-      def performance_units
-        DashboardHelper.format_unit(self.performance.map(&:y_val).sum)
-      end
-
-      def self.breakdown(date_range=nil, display=false, xhr=false)
-        self.breakdown_display(date_range, display, xhr)
-      end
-
-      def performance(date_range=nil)
+      def performance_data(date_range=nil)
         window = date_range.present? ? date_range : DashboardHelper.determine_window
         query = Api::V1::Order.complete.where(end_at: window).where(product: self).includes(:product)
         filter = "product_id, COUNT(id) as y_val, to_char(date(end_at), 'YYYY-MM') AS x_val, SUM(total) AS amount"
         query.select(filter).group([:product_id, :x_val]).order(:product_id)
       end
 
-      def self.performance_display(date_range=nil)
+      def performance_amount
+        DashboardHelper.format_currency(self.performance_data.map(&:amount).sum)
+      end
 
-        records = self.performance(date_range)
+      def performance_units
+        DashboardHelper.format_unit(self.performance_data.map(&:y_val).sum)
+      end
 
+      def self.performance(product_id=nil, date_range=nil, display=false, xhr=false)
+        self.performance_display(product_id, date_range, display, xhr)
+      end
+
+      def self.performance_data(product_id=nil, date_range=nil)
+        window = date_range.present? ? date_range : DashboardHelper.determine_window
+        query = Api::V1::Order.complete.where(end_at: window).where(product_id: product_id).includes(:product)
+        filter = "product_id, COUNT(id) as y_val, to_char(date(end_at), 'YYYY-MM') AS x_val, SUM(total) AS z_val"
+        query.select(filter).group([:product_id, :x_val]).order(:product_id).sort_by(&:x_val)
+      end
+
+      def self.performance_display(product_id=nil, date_range=nil, display=false, xhr=false)
+        records = self.performance_data(product_id, date_range)
         {
           xAxis: records.collect(&:x_val),
           yAxis: records.collect(&:y_val),
           zAxis: records.collect(&:z_val)
         }
-
       end
 
       def display_name

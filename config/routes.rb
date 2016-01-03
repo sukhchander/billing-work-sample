@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       end
 
       scope :data do
-        get '/chart/:type', to: 'data#show', as: :chart_type
+        get '/chart/:type/(:id)', to: 'data#show', as: :chart_type
       end
 
     end
