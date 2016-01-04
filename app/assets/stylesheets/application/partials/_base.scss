@@ -1,33 +1,33 @@
 html {
-    height: 100%;
-    font-size: 100%;
+  height: 100%;
+  font-size: 100%;
 }
 
 body {
-    color: #565656;
-    background: #F0F3F3;
-    font-family: $fontStack;
-    font-size: 100%;
-    padding: 0px;
-    margin: 0px;
-    min-height: 100%;
-    position: relative;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+  color: #565656;
+  background: #F0F3F3;
+  font-family: $fontStack;
+  font-size: 100%;
+  padding: 0px;
+  margin: 0px;
+  min-height: 100%;
+  position: relative;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 a:link,
 a:visited {
-    text-decoration: none;
-    outline: none;
-    color: $aLinkColor;
+  text-decoration: none;
+  outline: none;
+  color: $aLinkColor;
 }
 
 a:hover,
 a:active {
-    outline: none;
-    text-decoration: none;
-    color: $aLinkHover;
+  outline: none;
+  text-decoration: none;
+  color: $aLinkHover;
 }
 
 h1,
@@ -36,65 +36,146 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: $fontHeader;
-    color: #424856;
-    margin: 0;
+  font-family: $fontHeader;
+  color: #424856;
+  margin: 0;
 }
 
 h1,
 .h1 {
-    font-size: $size22px;
+  font-size: $size22px;
 }
 
 h2,
 .h2 {
-    font-size: $size19px;
+  font-size: $size19px;
 }
 
 h3,
 .h3 {
-    font-size: $size17px;
+  font-size: $size17px;
 }
 
 h4,
 .h4 {
-    font-size: $size15px;
+  font-size: $size15px;
 }
 
 h5,
 .h5 {
-    font-size: $size13px;
+  font-size: $size13px;
 }
 
 h6,
 .h6 {
-    font-size: $size12px;
+  font-size: $size12px;
 }
 
 p {
-    font-size: $size14px;
+  font-size: $size14px;
 }
 
 hr {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 ::selection {
-    background: #fff7dd;
+  background: #ffffff;
 }
 
 ::-moz-selection {
-    background: #fff7dd;
+  background: #ffffff;
 }
 
-canvas {
-    display: block;
-    padding: 0;
-    margin: 0 auto;
-    max-width: 100%;
+
+.default-color {
+  color: $defaultColor;
+}
+
+.primary-color {
+  color: $primaryColor;
+}
+
+.success-color {
+  color: $successColor;
+}
+
+.info-color {
+  color: $infoColor;
+}
+
+.warning-color {
+  color: $warningColor;
+}
+
+.danger-color {
+  color: $dangerColor;
+}
+
+.alert-color {
+  color: $alertColor;
+}
+
+.secondary-color {
+  color: $secondaryColor;
+}
+
+.tertiary-color {
+  color: $tertiaryColor;
+}
+
+.default-bg-color {
+  background-color: $defaultColor;
+}
+
+.primary-bg-color {
+  background-color: $primaryColor;
+}
+
+.success-bg-color {
+  background-color: $successColor;
+}
+
+.info-bg-color {
+  background-color: $infoColor;
+}
+
+.warning-bg-color {
+  background-color: $warningColor;
+}
+
+.danger-bg-color {
+  background-color: $dangerColor;
+}
+
+.text-muted {
+  color: #a2a2a2!important;
+}
+
+.padding-none {
+  padding: 0!important;
+}
+
+.margin-none {
+  margin: 0;
+}
+
+.block {
+  display: block;
+}
+
+.no-gutter {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.modal-content {
+  box-shadow: none;
+  border-radius: 0;
+  border: solid 10px rgba(255, 255, 255, 0.6)
 }
