@@ -26,11 +26,8 @@
                 = f.password_field :password, class: 'form-control', placeholder: 'Password'
                 %i.fa.fa-lock
 
-            = f.submit 'Sign in', class: 'btn btn-primary btn-block'
-
-            = devise_error_messages!
-
             %hr
 
-            - if devise_mapping.registerable?
-              = link_to 'Sign up', new_registration_path(resource_name), class: 'btn btn-default btn-block'
+            = f.submit 'Sign in', class: 'btn btn-default btn-block'
+
+            = devise_error_messages!
