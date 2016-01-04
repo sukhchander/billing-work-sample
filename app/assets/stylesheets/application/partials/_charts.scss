@@ -43,8 +43,8 @@
     }
 }
 
-.browser-chart {
-    height: 215px;
+.donut-chart {
+    height: 225px;
     ul {
         margin: 0;
         padding: 0;
@@ -102,15 +102,10 @@
 .stats .panel-body li i {}
 
 #revenue-chart {
-    height: 270px;
+    height: 200px;
 }
 
-.reportdate {
-    cursor: pointer;
-}
-
-//chartjs doughnut
-#doughnut-canvas-holder {
-    max-width: 137px;
-    min-width: 80px;
+#donut-canvas-holder {
+    max-width: 300px;
+    max-height: 300px;
 }

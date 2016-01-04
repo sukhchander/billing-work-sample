@@ -20,8 +20,8 @@
             .col-md-12.col-lg-12
               .row
                 .col-md-12.col-lg-12
-                  .line-chart
-                    %canvas#canvas1{height: "100"}
+                  .chart
+                    %canvas#revenue-chart{height: "100"}
 
   .row
     .col-md-12.col-lg-8
@@ -56,7 +56,7 @@
               %span.title.text-center Customers
 
     .col-xs-12.col-sm-6.col-md-6.col-lg-4
-      .panel.panel-default.browser-chart
+      .panel.panel-default.donut-chart
         .panel-heading
           %h3.panel-title PRODUCT UNITS
 
@@ -72,13 +72,13 @@
                     = usage[:label]
 
             .col-xs-6.col-sm-6.col-md-6.col-lg-6
-              #doughnut-canvas-holder
-                %canvas#doughnut-chart-area{height: "137", width: "137"}
-
+              .chart
+                %canvas#donut-chart{height: "400"}
 
 - content_for :javascript do
   :javascript
     $(document).ready(function() {
-        Rocketboard.dateRangePicker();
-        Rocketboard.chartJs();
+      Application.dateRangePicker();
+      Application.drawAreaChart("/api/v1/data/chart/aggregate", "revenue-chart");
+      Application.drawDonutChart("/api/v1/data/chart/breakdown_product", "donut-chart");
     });

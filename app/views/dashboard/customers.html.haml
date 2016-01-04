@@ -52,16 +52,15 @@
                       %span.total.text-center
                         = customer.performance_amount
 
-
               .col-md-8.col-lg-8
                 .row
                   .col-lg-12
-                    .line-chart
+                    .chart
                       - customer_id = customer.id
                       %canvas{id: "customer-chart-#{customer_id}", class: "customer-chart", height: "150"}
                       - content_for :javascript do
                         :javascript
                           $(document).ready(function() {
-                              Rocketboard.dateRangePicker();
-                              Rocketboard.drawAreaChart("/api/v1/data/chart/performance_customer/#{customer_id}","customer-chart-#{customer_id}")
+                            Application.dateRangePicker();
+                            Application.drawAreaChart("/api/v1/data/chart/performance_customer/#{customer_id}","customer-chart-#{customer_id}")
                           });
