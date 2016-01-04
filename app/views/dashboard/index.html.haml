@@ -27,28 +27,28 @@
     .col-md-12.col-lg-8
       .row
         .col-md-12
-          .panel.panel-solid-success.widget-mini
+          .panel.panel-solid-success.widget
             .panel-body
               %i.icon-bar-chart
               %span.total.text-center
                 = Api::V1::Order.total_revenue
               %span.title.text-center Total Revenue
         .col-md-3
-          .panel.widget-mini
+          .panel.widget
             .panel-body
               %i.icon-layers
               %span.total.text-center
                 = Api::V1::Order.complete.count
               %span.title.text-center Orders
         .col-md-6
-          .panel.panel-solid-primary.widget-mini
+          .panel.panel-solid-primary.widget
             .panel-body
               %i.icon-clock
               %span.total.text-center
                 = Api::V1::Order.total_units
               %span.title.text-center Units
         .col-md-3
-          .panel.widget-mini
+          .panel.widget
             .panel-body
               %i.icon-user
               %span.total.text-center
