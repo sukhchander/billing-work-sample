@@ -12,7 +12,8 @@ Rails.application.routes.draw do
       end
 
       scope :data do
-        get '/chart/:type/(:id)', to: 'data#show', as: :chart_type
+        get '/chart/(:type)/(:id)', to: 'data#show', as: :chart_type
+        get '/chart/(:type)/(:start_date)/(:end_date)', to: 'data#show', as: :chart_date_range
       end
 
     end
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: 'dashboard#index'
 
+      get 'dashboard', to: 'dashboard#index', as: :dashboard_home
       get 'dashboard/:type', to: 'dashboard#show', as: :dashboard_type
     end
 

@@ -3,7 +3,7 @@ module Api
 
     class DataController < Api::V1::ApiController
 
-      CACHE_TIME = 10.minutes
+      CACHE_TIME = 1.hour
 
       def show
         type = params[:type]
