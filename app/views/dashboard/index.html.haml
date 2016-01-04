@@ -15,13 +15,13 @@
             %span
               %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
               %i.fa.fa-calendar-o
-        .panel-body.revenue-chart
+        .panel-body.area-chart
           .row
             .col-md-12.col-lg-12
               .row
                 .col-md-12.col-lg-12
                   .chart
-                    %canvas#revenue-chart{height: "100"}
+                    %canvas#area-chart{height: "100"}
 
   .row
     .col-md-12.col-lg-8
@@ -79,6 +79,6 @@
   :javascript
     $(document).ready(function() {
       Application.dateRangePicker();
-      Application.drawAreaChart("/api/v1/data/chart/aggregate", "revenue-chart");
+      Application.drawAreaChart("/api/v1/data/chart/aggregate", "area-chart");
       Application.drawDonutChart("/api/v1/data/chart/breakdown_product", "donut-chart");
     });
