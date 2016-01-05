@@ -30,6 +30,10 @@ end
 puts "\nCREATED 200 USERS AS USER ACCOUNTS FOR ORDERS"
 
 puts "\n> rails s"
-puts "\n> ./api-calls.sh localhost:3000/api/v1/billing"
+puts "\n> ./api-calls.sh localhost:3000/api/v1"
+
+puts "\n NAVIGATE TO http://localhost:3000"
+puts "\n ENTER EMAIL: " << user.email
+puts "\n ENTER PASSWORD: " << 'test2020'
 
 puts
