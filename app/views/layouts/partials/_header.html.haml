@@ -1,0 +1,26 @@
+.brand
+  %a.logo{href: root_url}
+    %i.fa.fa-lg.fa-space-shuttle.hidden-xs
+    %span.hidden-xs ROCKETBOARD
+
+%ul.nav.navbar-nav.navbar-left
+  %li.toggle-navigation.toggle-left
+    %button#toggle-left.sidebar-toggle
+      %i.fa.fa-bars
+
+%ul.nav.navbar-nav.navbar-right
+  %li.dropdown.profile
+    %a.dropdown-toggle{"data-toggle" => "dropdown", href: "javascript:void(0);"}
+      %span.meta
+        %span.avatar
+          = image_tag current_user.try(:gravatar_url), class: 'img-circle'
+        %span.text
+          = current_user.try(:email)
+        %span.caret
+    %ul.dropdown-menu.animated.fadeIn{role: :menu}
+      %span.arrow.top
+      %li
+        = link_to destroy_user_session_path, method: :delete do
+          %span.icon
+            %i.fa.fa-power-off
+            Log out

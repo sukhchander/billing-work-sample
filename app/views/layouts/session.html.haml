@@ -1,0 +1,26 @@
+!!!
+
+%html
+
+  %head
+
+    %meta{charset: "utf-8"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", name: "viewport"}
+
+    %title ROCKETBOARD
+
+    = render "layouts/partials/favicon"
+
+    = stylesheet_link_tag 'application', media: 'all'
+
+    = csrf_meta_tags
+
+  %body
+
+    %section.container.animated.fadeIn.theme-default
+
+      = yield
+
+  = javascript_include_tag 'application'
+  = yield :javascript

@@ -1,0 +1,84 @@
+.pageheader
+  .breadcrumb-wrapper
+    %ol.breadcrumb
+      %li.active
+        = link_to :Dashboard, dashboard_path
+
+%section#main-content
+
+  .row
+    .col-md-12.col-lg-12
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title Total Revenue
+          .reportdate.actions
+            %span
+              %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
+              %i.fa.fa-calendar-o
+        .panel-body.area-chart
+          .row
+            .col-md-12.col-lg-12
+              .row
+                .col-md-12.col-lg-12
+                  .chart
+                    %canvas#area-chart{height: "100"}
+
+  .row
+    .col-md-12.col-lg-8
+      .row
+        .col-md-12
+          .panel.panel-solid-success.widget
+            .panel-body
+              %i.icon-bar-chart
+              %span.total.text-center
+                = Api::V1::Order.total_revenue
+              %span.title.text-center Total Revenue
+        .col-md-3
+          .panel.widget
+            .panel-body
+              %i.icon-layers
+              %span.total.text-center
+                = Api::V1::Order.complete.count
+              %span.title.text-center Orders
+        .col-md-6
+          .panel.panel-solid-primary.widget
+            .panel-body
+              %i.icon-clock
+              %span.total.text-center
+                = Api::V1::Order.total_units
+              %span.title.text-center Units
+        .col-md-3
+          .panel.widget
+            .panel-body
+              %i.icon-user
+              %span.total.text-center
+                = Api::V1::Order.total_customers
+              %span.title.text-center Customers
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-4
+      .panel.panel-default.donut-chart
+        .panel-heading
+          %h3.panel-title PRODUCT UNITS
+
+        .panel-body
+          .row
+
+            .col-xs-6.col-sm-6.col-md-6.col-lg-6
+              %ul
+                - breakdown = Api::V1::Product.breakdown(@date_range,true)
+                - breakdown.each do |usage|
+                  %li
+                    %i{class: "fa fa-circle #{usage[:color]}-color"}
+                    = usage[:label]
+
+            .col-xs-6.col-sm-6.col-md-6.col-lg-6
+              .chart
+                %canvas#donut-chart{height: "400"}
+
+- content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+      Application.dateRangePicker();
+      Application.drawAreaChart("/api/v1/data/chart/aggregate", "area-chart");
+      Application.drawDonutChart("/api/v1/data/chart/breakdown_product", "donut-chart");
+    });

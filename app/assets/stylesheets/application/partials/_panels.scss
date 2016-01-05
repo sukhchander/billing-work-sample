@@ -1,0 +1,129 @@
+.panel {
+  border: none;
+  @include roundBorders(0);
+}
+
+.panel>.panel-heading {
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 14px 10px;
+}
+
+.panel-heading>.panel-title {
+  height: auto;
+  font-size: $size13px;
+}
+
+.panel>.panel-footer {
+  border-color: #ecedf0;
+}
+
+.panel .actions {
+  position: absolute;
+  right: 30px;
+  top: 8px
+}
+
+.panel .actions i {
+  font-size: $size14px;
+  margin: 0 3px
+}
+
+.panel .actions i:hover {
+  cursor: pointer
+}
+
+.panel>.panel-footer {
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 15px
+}
+
+.panel .panel-body .h1 {
+  float: none;
+}
+
+.panel-default>.panel-heading {
+  border-color: #eff2f7;
+  background: #ffffff;
+  color: #767676
+}
+
+.panel-default .actions i {
+  color: $defaultColor;
+  margin: 0 3px
+}
+
+.panel-default .actions i:hover {
+  cursor: pointer;
+  color: #767676
+}
+
+.panel-default>.panel-footer {
+  border-color: #eff2f7;
+  background: #ffffff;
+  color: #767676
+}
+
+.panel-primary>.panel-heading {
+  color: #ffffff;
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+}
+
+.panel-primary {
+  border-color: #1abc9c;
+}
+
+.panel-primary>.panel-heading a,
+.panel-primary>.panel-heading a:hover {
+  color: #fff
+}
+
+.panel-solid-default>.panel-body,
+.panel-solid-default>.panel-footer,
+.panel-solid-default>.panel-heading {
+  background: $defaultColor;
+  border: none;
+  color: #fff
+}
+
+.panel-solid-primary>.panel-body,
+.panel-solid-primary>.panel-footer,
+.panel-solid-primary>.panel-heading {
+  background: $primaryColor;
+  color: #ffffff;
+  border: none
+}
+
+.panel-solid-success>.panel-body,
+.panel-solid-success>.panel-footer,
+.panel-solid-success>.panel-heading {
+  background: $successColor;
+  color: #ffffff;
+  border: none
+}
+
+.panel-solid-warning>.panel-body,
+.panel-solid-warning>.panel-footer,
+.panel-solid-warning>.panel-heading {
+  background: $warningColor;
+  color: #ffffff;
+  border: none
+}
+
+.panel-solid-info>.panel-body,
+.panel-solid-info>.panel-footer,
+.panel-solid-info>.panel-heading {
+  background: $infoColor;
+  color: #ffffff;
+  border: none
+}
+
+.panel-solid-danger>.panel-body,
+.panel-solid-danger>.panel-footer,
+.panel-solid-danger>.panel-heading {
+  background: $dangerColor;
+  color: #ffffff;
+  border: none
+}

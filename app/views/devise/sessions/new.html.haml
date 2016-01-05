@@ -1,0 +1,33 @@
+.row
+
+  .col-md-6.col-md-offset-3
+
+    #login-wrapper
+
+      %header
+        .brand
+          %a.logo{href: root_url}
+            %i.fa.fa-lg.fa-space-shuttle
+            %span ROCKETBOARD
+
+      .panel.panel-primary
+        .panel-heading
+        .panel-body
+
+          = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: :form, class: 'form-horizontal'}) do |f|
+
+            .form-group
+              .col-md-12
+                = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'E-mail'
+                %i.fa.fa-user
+
+            .form-group
+              .col-md-12
+                = f.password_field :password, class: 'form-control', placeholder: 'Password'
+                %i.fa.fa-lock
+
+            %hr
+
+            = f.submit 'Sign in', class: 'btn btn-default btn-block'
+
+            = devise_error_messages!

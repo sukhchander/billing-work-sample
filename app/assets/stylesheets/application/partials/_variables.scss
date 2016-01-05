@@ -1,0 +1,42 @@
+// google fonts
+$fontHeader: "Montserrat", sans-serif;
+$fontStack: "Open Sans",Helvetica,Arial,sans-serif;
+
+$size6px:6px;
+$size7px:7px;
+$size8px:8px;
+$size9px:9px;
+$size10px:10px;
+$size11px:11px;
+$size12px:12px;
+$size13px:13px;
+$size14px:14px;
+$size15px:15px;
+$size16px:16px;
+$size17px:17px;
+$size18px:18px;
+$size19px:19px;
+$size20px:20px;
+$size21px:21px;
+$size22px:22px;
+$size23px:23px;
+$size24px:24px;
+
+$defaultColor: #1F7BB6;
+$defaultColorHover:lighten($defaultColor,5%);
+$primaryColor: #e25d5d;
+$primaryColorHover:lighten($primaryColor,5%);
+$successColor: #1F7BB6;
+$successColorHover:lighten($successColor,5%);
+$warningColor: #EDCE8C;
+$warningColorHover:lighten($warningColor,5%);
+$infoColor: #1F7BB6;
+$infoColorHover:lighten($infoColor,5%);
+$dangerColor: #e25d5d;
+$dangerColorHover:lighten($dangerColor,5%);
+$alertColor: #f5aca6;
+$secondaryColor: #a6ca8a;
+$tertiaryColor: #f2c779;
+
+$aLinkColor: #2E2E32;
+$aLinkHover: #999;

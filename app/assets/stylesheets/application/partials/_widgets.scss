@@ -1,0 +1,17 @@
+.widget {
+  position: relative;
+  .title {
+    font-size: $size16px;
+    display: block;
+  }
+  .total {
+    font-size: 2em;
+    display: block;
+    font-weight: 300;
+  }
+  i {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+}

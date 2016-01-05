@@ -1,0 +1,66 @@
+.pageheader
+  .breadcrumb-wrapper
+    %ol.breadcrumb
+      %li
+        = link_to :Dashboard, dashboard_path
+      %li.active
+        = link_to :Customers, dashboard_path(:customers)
+
+%section#main-content
+
+  - customers = Api::V1::Order.customers.count
+  - customers.each_pair do |customer_id, num_orders|
+    - customer = User.find(customer_id)
+    .row
+      .col-md-12.col-lg-12
+        .panel.panel-default
+
+          .panel-heading
+            %h3.panel-title
+              %b= customer.email
+            .reportdate.actions
+              %span
+                %input{type: :text, name: :daterange, value: "#{6.months.ago.beginning_of_day.strftime("%Y-%m-%d")} - #{1.day.ago.beginning_of_day.strftime("%Y-%m-%d")}"}
+                %i.fa.fa-calendar-o
+
+          .panel-body
+
+            .row
+
+              .col-md-4.col-lg-4
+
+                .col-md-12
+                  .panel.panel-solid.widget
+                    .panel-body
+                      %i.icon-layers
+                      %span.total.text-center
+                        = num_orders
+                      %span.title.text-center Orders
+
+                .col-md-12
+                  .panel.panel-solid-primary.widget
+                    .panel-body
+                      %i.icon-clock
+                      %span.total.text-center
+                        = customer.performance_units
+                      %span.title.text-center Units
+
+                .col-md-12
+                  .panel.panel-solid-success.widget
+                    .panel-body
+                      %i.icon-bar-chart
+                      %span.total.text-center
+                        = customer.performance_amount
+
+              .col-md-8.col-lg-8
+                .row
+                  .col-lg-12
+                    .chart
+                      - customer_id = customer.id
+                      %canvas{id: "customer-chart-#{customer_id}", class: "customer-chart", height: "150"}
+                      - content_for :javascript do
+                        :javascript
+                          $(document).ready(function() {
+                            Application.dateRangePicker();
+                            Application.drawAreaChart("/api/v1/data/chart/performance_customer/#{customer_id}","customer-chart-#{customer_id}")
+                          });

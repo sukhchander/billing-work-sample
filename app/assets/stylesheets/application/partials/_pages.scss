@@ -1,0 +1,31 @@
+#login-wrapper {
+  margin: 100px auto;
+  .logo {
+    color: #1d212a;
+    font-size: 2em;
+    text-transform: uppercase;
+    padding: 15px 0 0 15px;
+    display: inline-block;
+  }
+  .logo span {
+    font-weight: 700;
+  }
+  .logo img {
+    margin-top: -5px;
+  }
+  .brand {
+    text-align: center;
+    padding: 20px 0;
+  }
+}
+
+#login-wrapper .form-group i {
+  position: absolute;
+  left: 27px;
+  top: 11px;
+}
+
+#login-wrapper #user_email,
+#login-wrapper #user_password {
+  padding-left: 32px;
+}
