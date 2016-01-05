@@ -28,3 +28,7 @@ puts "\nCREATING 200 USERS AS USER ACCOUNTS FOR ORDERS"
 end
 
 puts "\nCREATED 200 USERS AS USER ACCOUNTS FOR ORDERS"
+
+puts "\nEXECUTE ./api-calls.sh lvh.me:3000/api/v1/billing"
+
+puts
