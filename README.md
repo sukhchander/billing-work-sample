@@ -2,7 +2,6 @@
 
 Thank you for taking time to consider working at Compose.  This is a work sample to help us kick off the relationship.  We find starting with this process removes the uneasy feelings that resumés give us.
 
-This should take around 5 - 6 hours.  Don't sweat if this takes longer.  While we provide a time, we respect quality work far more than an immediate response.  Thus, we put this timeframe on the project to be upfront with you.  But, the time should not restrict you.
 
 ## The work samples
 
