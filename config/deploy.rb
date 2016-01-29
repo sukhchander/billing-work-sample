@@ -10,8 +10,6 @@ set :forward_agent, true
 set :user, "deploy"
 set :repository, "git@github.com:sukhchander/rocketboard.git"
 
-set :domain, "app.selastik.com"
-
 set :shared_paths, [
   "log",
   "config/database.yml",
@@ -27,8 +25,10 @@ task :environment do
   case stage
     when "staging"
       set :branch, "develop"
+      set :domain, "app.selastik.com"
     when "production"
       set :branch, "master"
+      set :domain, "app.selastik.com"
     else
     print_error "Please specify a stage. eg: mina deploy to=production"
     exit
@@ -63,18 +63,12 @@ end
 
 desc "Deploy current version to the server."
 task deploy: :environment do
-
-  #set :sidekiq_config, lambda { "#{deploy_to}/#{shared_path}/config/sidekiq.yml" }
-  #set :sidekiq_log, lambda { "#{deploy_to}/#{shared_path}/log/sidekiq.log" }
-  #set :sidekiq_pid, lambda { "#{deploy_to}/#{shared_path}/tmp/pids/sidekiq.pid" }
-
   deploy do
     invoke :"git:clone"
     invoke :"deploy:link_shared_paths"
     invoke :"bundle:install"
     invoke :"rails:db_migrate"
     invoke :"rails:assets_precompile"
-    #invoke :'sidekiq:restart'
 
     to :launch do
       queue "echo 'PUMA - RESTARTING'"
